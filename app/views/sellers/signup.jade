@@ -1,0 +1,38 @@
+// views/sellers/signup.jade
+
+
+extends ../layouts/default
+
+block main
+    center
+        h1= title
+
+block content
+    form.form-horizontal(action='/sellers', method='post', role='form')
+        input(type='hidden', name='_csrf', value='#{csrf_token}')
+
+        .form-group
+            label.col-sm-2.control-label(for='name') 用户名
+            .col-sm-10
+                input#name.form-control(type='text', name='name', placeholder='用户名', value=user.name)
+
+        .form-group
+            label.col-sm-2.control-label(for='email') 邮箱
+            .col-sm-10
+                input#email.form-control(type='email', name='email', placeholder='Email', value=user.email)
+
+        .form-group
+            label.col-sm-2.control-label(for='password') 密码
+            .col-sm-10
+                input#password.form-control(type='password', name='password', placeholder='password')
+
+        .form-group
+            label.col-sm-2.control-label(for='confirmPassword') 密码确认
+            .col-sm-10
+                input#confirmPassword.form-control(type='password', name='confirmPassword', placeholder='再输入一遍以确认')
+
+        .form-group
+            .col-sm-offset-2.col-sm-10
+                button.btn.btn-primary(type='submit') 注册
+                &nbsp; or &nbsp;
+                a.show-login(href='/login') 登录

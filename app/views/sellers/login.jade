@@ -1,0 +1,32 @@
+//
+// @file views/sellers/login.jade
+//
+
+extends ../layouts/default
+
+block main
+    center
+        h1= title
+
+block content
+    form.form-horizontal(action='/sellers/session', method='post', role='form')
+        input(type='hidden', name='_csrf', value='#{csrf_token}')
+        p.col-sm-offset-2.error= message
+        .form-group
+            label.col-sm-2.control-label(for='email') 邮箱
+            .col-sm-10
+                input#email.form-control(type='email', placeholder='Email', name='email')
+
+        .form-group
+            label.col-sm-2.control-label(for='password') 密码
+            .col-sm-10
+                input#password.form-control(type='password', placeholder='Password', name='password')
+
+        .form-group
+            .col-sm-offset-2.col-sm-4
+                button.btn.btn-primary(type='submit') 登录
+                &nbsp; or &nbsp;
+                a.show-signup(href='/signup') 注册
+            .col-sm-offset-4.col-sm-2
+                p 个人用户？点击
+                    a(href='/login')这里登录

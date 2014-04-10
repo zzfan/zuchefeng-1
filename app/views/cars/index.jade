@@ -1,0 +1,28 @@
+// @file views/cars/index.jade
+
+extends ../layouts/default
+
+block main
+    h1= title
+
+block content
+    - if (cars.length)
+        - each car in cars
+            .car
+                h3
+                    //TODO ?
+                    a(href='/cars/'+car._id, title=car.name) #{car.name}
+                    p= car.desc
+                    .meta
+                        //TODO ?
+                        span.muted= formatDate(car.createdAt)
+                        - if (car.owner)
+                            &nbsp; - &nbsp;
+                            span 拥有者 &nbsp;
+                            a(href='/users/'+car.owner._id)= car.owner.name
+        - if (pages>1)
+            ul.pagination
+                != createPagination(pages, page)
+    - else
+        h4.muted 当前没有车辆。&nbsp;
+        a(href='/cars/new') 添加一辆

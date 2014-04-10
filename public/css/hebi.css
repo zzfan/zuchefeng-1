@@ -1,0 +1,83 @@
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { #search input { width: 350px; }}
+
+
+.icon-bar{background-color:#563d7c} /* diao */
+
+ul.nav-stacked {
+	background-color: white;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+
+.nav li.disabled a, .nav li.disabled a:hover {
+	cursor: default;
+	color: black;
+	border: 0;
+}
+
+#welcome-info {
+	background-color: white;
+	padding: 10px;
+}
+
+#welcome-info img {
+	width: 80px;
+	height: 80px;
+}
+
+#welcome-info div:last-child div:last-child {
+	border-top: 1px solid #ededed;
+	padding-top: 3px;
+}
+
+#welcome-info h3 {
+	margin: 10px 0;
+}
+
+#current-order {
+	margin-top: 20px;
+	background-color: white;
+	padding: 10px;
+}
+
+#recom {
+	margin-top: 20px;
+	background-color: white;
+	padding: 10px;
+}
+.step {
+	display: inline-block;
+	text-align: center;
+}
+
+.step-first div:first-child {
+	border: 0px;
+}
+.step-last div:nth-child(3) {
+	border: 0px;
+}
+
+.step-circle {
+	display: inline-block;
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	background-color: gray;
+	border-radius: 15px;
+}
+
+.step-line {
+	display: inline-block;
+	vertical-align: middle;
+	border-top: 3px solid gray;
+	width: 60px;
+}
+
+.step-done div, .step-now div:nth-child(1), .step-now div:nth-child(2) {
+	background-color: #99cc33;
+	border-color: #99cc33;
+}
+

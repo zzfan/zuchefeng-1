@@ -1,0 +1,26 @@
+nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+    .container
+        .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a.navbar-brand(href='/') zuchefeng
+        .collapse.navbar-collapse.navbar-right
+            ul.nav.navbar-nav
+                - if (req.isAuthenticated())
+                    - if (req.user.type == 'Seller')
+                        - var url = '/sellers/'+req.user._id+'/dashboard'
+                    - else
+                        - var url = '/users/'+req.user._id
+                    li
+                        a(href=url, title="Profile") #{req.user.name} 的个人中心 
+                    li
+                        a(href="/logout", title="logout") 退出
+                - else
+                    //TODO how does isActive work
+                    li(class=isActive('/login') ? 'active' : '')
+                        a(href="/login", title="Login") 登录
+                    li(class=isActive('/signup') ? 'active' : '')
+                        a(href='/signup', title='注册') 注册

@@ -1,0 +1,15 @@
+// views/sellers/show.jade
+
+
+extends ../layouts/default
+
+block main
+    h1= user.name + '的公司详情'
+
+block content
+                
+    .col-md-10
+        - if (user.cars.length)
+            p 当前车辆
+            - each car in user.cars
+                p= car

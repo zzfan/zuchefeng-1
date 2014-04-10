@@ -1,0 +1,23 @@
+extends ../layouts/default
+
+block main
+    h1 订单确认
+
+block content
+    .col-md-8
+        form.form-horizontal(method='post', action='/cars/'+car._id+'/order', enctype='multipart/form-data', role='form')
+            input(type='hidden', name='_csrf', value='#{csrf_token}')
+            .form-group
+                label.col-sm-2.control-label(for='from') 开始时间
+                .col-sm-10
+                    input.form-control#from(type='date', name='from', value=helpers.yyyymmdd())
+
+            .form-group
+                label.col-sm-2.control-label(for='to') 结束时间
+                .col-sm-10
+                    input.form-control#to(type='date', name='to', value=helpers.yyyymmdd1())
+            .form-group
+                .col-sm-offset-2.col-sm-10
+                    button.btn.btn-primary(type='submit') 确定
+                    &nbsp;
+                    a.btn.btn-danger(href='/cars/'+car._id, title='取消') 取消

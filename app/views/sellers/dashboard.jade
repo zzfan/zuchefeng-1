@@ -1,0 +1,23 @@
+// views/sellers/show.jade
+
+
+extends ../layouts/default
+
+block main
+    h1= user.name + '的控制面板'
+
+block content
+    .col-md-2
+        ul.nav.nav-pills.nav-stacked
+            li(class='')
+                a(href='/cars/new', title='添加新车') 添加新车
+                
+    .col-md-10
+        - if (user.cars.length)
+            p 当前车辆
+            - each car in user.cars
+                p= car
+        - else
+            p 还没有添加车辆，点击
+                a(href='/cars/new') 这里
+                p 立即添加

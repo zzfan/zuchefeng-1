@@ -1,0 +1,24 @@
+// views/users/show.jade
+
+
+extends ../layouts/default
+
+block main
+    h1= user.name
+
+block content
+    .col-sm-2
+        ul.nav.nav-pills.nav-stacked
+            li(class='')
+                a(href='#') 修改密码
+            li(class='')
+                a(href='#') 更新信息
+                
+    .col-sm-10
+        - if (user.orders.length)
+            p 我的订单
+            - each order in user.orders
+                p= order
+        - else
+            p 还没有租过车，立即查看
+                a(href='/') 车辆列表

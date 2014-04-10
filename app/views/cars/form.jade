@@ -1,0 +1,46 @@
+//
+// @file views/car/form.jade
+//
+extends ../layouts/default
+
+block main
+    h1= title
+    hr
+
+block content
+    - var action = '/cars' + (car.isNew ? '' : '/'+car._id) //TODO ?
+
+    .row
+        .col-md-8
+            form.form-horizontal(method='post', action=action, enctype='multipart/form-data', role='form')
+                input(type='hidden', name='_csrf', value='#{csrf_token}')
+
+                - if (!car.isNew)
+                    //TODO how does this work
+                    input(type='hidden', name='_method', value='PUT')
+
+                .form-group
+                    label.col-sm-2.control-label(for='name') 名称
+                    .col-sm-10
+                        input.form-control#name(type='text', name='name', value=car.title, placeholder='请输入标题')
+                //TODO select from brands
+                .form-group
+                    label.col-sm-2.control-label(for='brand') 品牌
+                    .col-sm-10
+                        input.form-control#brand(type='text', name='brand', value=car.brand, placeholder='请输入品牌')
+
+                .form-group
+                    label.col-sm-2.control-label(for='image') 图片
+                    .col-sm-10
+                        input#image(type='file', name='image')
+
+                .form-group
+                    label.col-sm-2.control-label(for='desc') 描述
+                    .col-sm-10
+                        textarea.form-control#desc(rows='5', name='desc', placeholder='请输入车辆描述')= car.desc
+
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                        button.btn.btn-primary(type='submit') 保存
+                        &nbsp;
+                        a.btn.btn-danger(href='/cars', title='取消') 取消
