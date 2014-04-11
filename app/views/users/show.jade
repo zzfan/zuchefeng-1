@@ -3,22 +3,108 @@
 
 extends ../layouts/default
 
-block main
+//block main
     h1= user.name
 
 block content
-    .col-sm-2
-        ul.nav.nav-pills.nav-stacked
-            li(class='')
-                a(href='#') 修改密码
-            li(class='')
-                a(href='#') 更新信息
-                
-    .col-sm-10
-        - if (user.orders.length)
-            p 我的订单
-            - each order in user.orders
-                p= order
-        - else
-            p 还没有租过车，立即查看
-                a(href='/') 车辆列表
+    .container
+        .row
+            .col-md-3
+                .row
+                    ul.nav.nav-tabs.nav-stacked
+                        li.disabled
+                            a 订单中心
+                        li
+                            a(href='#') 当前订单
+                        li
+                            a(href='#') 待确认订单
+                        li
+                            a(href='#') 待评价订单
+                        li
+                            a(href='#') 过往订单
+                .row
+                    ul.nav.nav-tabs.nav-stacked
+                        li.disabled
+                            a 个人中心
+                        li
+                            a(href='#') 常用地址
+                        li
+                            a(href='#') 信息更新
+                        li
+                            a(href='#') 密码修改
+                        li
+                            a(href='#') 我的收藏夹
+                        li
+                            a(href='#') 我的优惠券
+                .row
+                    ul.nav.nav-tabs.nav-stacked
+                        li.disabled
+                            a 另一个面板
+                        li
+                            a(href='#') 待定
+                        li
+                            a(href='#') 待定
+                        li
+                            a(href='#') 待定
+                        li
+                            a(href='#') 待定
+            .col-md-9
+                .row#welcome-info
+                    .col-md-2
+                        img(src='img/profile-default.jpg')
+                    .col-md-10
+                        .row
+                            h3= user.name+'，早上好～'
+                        .row
+                            p 账户安全级别：高
+                .row#current-order
+                    div
+                        h3 订单号：032487922421
+                        table.table
+                            tr
+                                th 项目
+                                th 值
+                            tr
+                                td 汽车名称
+                                td xxx
+                            tr
+                                td 租赁公司
+                                td xxx
+                            tr
+                                td 价格
+                                td 99
+                            tr
+                                td 开始时间
+                                td 2014-3-12
+                            tr
+                                td 结束时间
+                                td 2014-3-14
+                            tr
+                                td 备注
+                                td xxx
+                        #step-bar
+                            span(style='display: inline-block')
+                                //should deal with inline-block's spaces
+                                .step.step-first.step-done
+                                    .step-line
+                                    .step-circle
+                                    .step-line
+                                    p 在线预定
+                                .step.step-first.step-done
+                                    .step-line
+                                    .step-circle
+                                    .step-line
+                                    p 取车
+                                .step.step-first.step-done
+                                    .step-line
+                                    .step-circle
+                                    .step-line
+                                    p 还车
+                                .step.step-first.step-done
+                                    .step-line
+                                    .step-circle
+                                    .step-line
+                                    p 确认及评价
+                    .row#recom
+                        h4 为你推荐
+                        //thumbnail

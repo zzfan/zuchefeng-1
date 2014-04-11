@@ -2,27 +2,48 @@
 
 extends ../layouts/default
 
-block main
+//block main
     h1= title
 
 block content
-    - if (cars.length)
-        - each car in cars
-            .car
-                h3
-                    //TODO ?
-                    a(href='/cars/'+car._id, title=car.name) #{car.name}
-                    p= car.desc
-                    .meta
-                        //TODO ?
-                        span.muted= formatDate(car.createdAt)
-                        - if (car.owner)
-                            &nbsp; - &nbsp;
-                            span 拥有者 &nbsp;
-                            a(href='/users/'+car.owner._id)= car.owner.name
-        - if (pages>1)
-            ul.pagination
-                != createPagination(pages, page)
-    - else
-        h4.muted 当前没有车辆。&nbsp;
-        a(href='/cars/new') 添加一辆
+    div.panel-group#area-panel
+        div.panel.panel-default
+            div.panel-heading
+                ul.breadcrumb.panel-heading
+                    li
+                        a(href='#') 安徽
+                    li
+                        a(href='#') 合肥
+                    li
+                        a(href='#') 蜀山区
+                    li.active
+                        a(href='#') 中科大
+                    li.navbar-right
+                        a.panel-title.collapsed(data-toggle='collapse' href='#select-city') 展开
+            div.panel-collapse.collapse#select-city
+                div.panel-body
+                    三里庵 国购 万达广场
+                    
+    - for (var i=0; i<cars.length/3; i++)
+        - console.log(cars.length)
+        div.row
+            - for (var j=0; j<3; j++)
+                - var car = cars[i*3+j]
+                div.col-md-4
+                    div.thumbnail
+                        img(src='img/1.jpeg')
+                        div.caption
+                            h3= car.name
+                            p= car.desc
+                            .meta
+                                span.muted= formatDate(car.createdAt)
+                                - if (car.seller)
+                                    &nbsp; - &nbsp;
+                                    span 拥有者 &nbsp;
+                                    a(href='/users/'+car.seller._id)= car.seller.name
+                            p
+                                a.btn.btn-primary(href='#') 预定
+                                a.btn(href='#') 查看详情
+    - if (pages>1)
+        ul.pagination
+            != createPagination(pages, page)

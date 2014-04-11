@@ -1,4 +1,11 @@
+body {
+	background-color: #f5f7fa;
+}
 
+#area-panel ul {
+	margin-bottom: 0px;
+	padding: 0px 15px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { #search input { width: 350px; }}
 
@@ -47,6 +54,10 @@ ul.nav-stacked {
 	margin-top: 20px;
 	background-color: white;
 	padding: 10px;
+}
+
+#step-bar {
+	text-align: center;
 }
 .step {
 	display: inline-block;
