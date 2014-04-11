@@ -25,7 +25,8 @@ var SellerSchema = new Schema({
     salt: {type: String, default: ''},
 	cars: [{
 		type: Schema.ObjectId, ref: 'Car'
-	}]
+	}],
+	image: { type: String, default: ''}
 });
 
 SellerSchema.virtual('password')
@@ -59,7 +60,16 @@ SellerSchema.methods = {
 		this.save(function(err) {
 			if (err) throw err;
 		});
-	}
+	},
+    moveAndSave: function(image, cb) {
+        var self = this;
+        utils.moveImage(image, 'public/img/upload/', function(newFile) {
+            utils.thumbnailImage(newFile, 'public/img/thumbnail/', function(url) {
+                self.image = url.substr(6);
+                self.save(cb);
+            });
+        });
+    },
 };
 SellerSchema.statics = {
     load: function(id, cb) {

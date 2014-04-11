@@ -18,7 +18,8 @@ var UserSchema = new Schema({
     }],
 	cars: [{
 		type: Schema.ObjectId, ref: 'Car'
-	}]
+	}],
+	image: { type: String, default: ''}
 });
 
 UserSchema.virtual('password')

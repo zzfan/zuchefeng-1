@@ -77,12 +77,26 @@ var convert = function(obj) {
 exports.update = function(req, res) {
 	var seller = req.profile;
 	seller = extend(seller, convert(req.body));
-	console.log(seller);
 	seller.save(function(err) {
 		if (err) throw err;
 		req.flash('success', 'update success')
 		return res.redirect('/sellers/'+seller._id+'/dashboard')
 	});
+}
+
+// change head picture
+exports.head = function(req, res) {
+	var seller = req.profile;
+	console.log(req.files);
+    if (req.files.image.originalFilename) {
+        seller.moveAndSave(req.files.image, function(err) {
+        	if (err) throw err;
+			req.flash('success', 'upload image success');
+			return res.redirect('/sellers/'+seller._id+'/dashboard');
+        });
+    } else {
+        res.redirect('/sellers/'+seller._id+'/dashboard');
+    }
 }
 
 exports.load = function(req, res, next, id) {

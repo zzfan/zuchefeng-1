@@ -1,6 +1,6 @@
 .row.hebi-block-main
     .col-md-2
-        img(src='car.url')
+        img(src=car.image.url)
     .col-md-8
         p ID #{car.id}
         p 名称 #{car.name}
@@ -8,6 +8,10 @@
         p 价格 #{car.price}
         p 描述 #{car.desc}
     .col-md-2
-        a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑
-        input(type='hidden', name='_method', value='DELETE')
-        button.btn.btn-danger(type='submit') 删除
+        form(action='/cars/'+car._id, method='post', onsubmit="return confirm('将会删除该车，确定吗？')")
+            input(type='hidden', name='_csrf', value='#{csrf_token}')
+            a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑
+            input(type='hidden', name='_method', value='DELETE')
+            button.btn.btn-danger(type='submit') 删除
+        p
+            a(href='/cars/'+car.id) 查看详情

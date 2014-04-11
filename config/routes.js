@@ -46,6 +46,7 @@ module.exports = function (app, passport) {
 	app.get('/sellers/:sellerId/dashboard', sellers.dashboard);
 	app.get('/sellers/:sellerId/edit', sellerAuth, sellers.edit);
 	app.post('/sellers/:sellerId', sellerAuth, sellers.update);
+	app.post('/sellers/:sellerId/head', sellerAuth, sellers.head);
 	
 
 
