@@ -4,8 +4,9 @@
 extends ../layouts/default
 
 block main
-    h1= title
-    hr
+    .col-md-12.column
+        .page-header
+            h1= title
 
 block content
     - var action = '/cars' + (car.isNew ? '' : '/'+car._id) //TODO ?
@@ -22,7 +23,7 @@ block content
                 .form-group
                     label.col-sm-2.control-label(for='name') 名称
                     .col-sm-10
-                        input.form-control#name(type='text', name='name', value=car.title, placeholder='请输入标题')
+                        input.form-control#name(type='text', name='name', value=car.name, placeholder='请输入标题')
                 //TODO select from brands
                 .form-group
                     label.col-sm-2.control-label(for='brand') 品牌

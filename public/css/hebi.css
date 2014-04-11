@@ -2,21 +2,20 @@ body {
 	background-color: #f5f7fa;
 }
 
-#area-panel ul {
-	margin-bottom: 0px;
-	padding: 0px 15px;
-}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) { #search input { width: 350px; }}
 
 
 .icon-bar{background-color:#563d7c} /* diao */
 
+/*
 ul.nav-stacked {
 	background-color: white;
 	margin-bottom: 20px;
 	margin-right: 20px;
 }
+*/
 
 
 .nav li.disabled a, .nav li.disabled a:hover {
@@ -25,10 +24,29 @@ ul.nav-stacked {
 	border: 0;
 }
 
+.hebi-block-main {
+	background-color: white;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.hebi-block-nav {
+	background-color: white;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+#area-panel ul {
+	margin-bottom: 0px;
+	padding: 0px 15px;
+}
+
+/*
 #welcome-info {
 	background-color: white;
 	padding: 10px;
 }
+*/
 
 #welcome-info img {
 	width: 80px;
@@ -44,17 +62,21 @@ ul.nav-stacked {
 	margin: 10px 0;
 }
 
+/*
 #current-order {
 	margin-top: 20px;
 	background-color: white;
 	padding: 10px;
 }
+*/
 
+/*
 #recom {
 	margin-top: 20px;
 	background-color: white;
 	padding: 10px;
 }
+*/
 
 #step-bar {
 	text-align: center;

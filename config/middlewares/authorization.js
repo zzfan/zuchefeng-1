@@ -30,13 +30,22 @@ exports.requiresSeller = function(req, res, next) {
 
 exports.car = {
     hasAuthorization: function (req, res, next) {
-        if (req.car.owner._id != req.user.id) { //TODO ?
+        if (req.car.seller._id != req.user.id) { //TODO ?
             req.flash('info', 'You are not authorized');
             return res.redirect('/cars/'+req.car.id);
         }
         next();
     }
 };
+exports.seller = {
+	hasAuthorization: function(req, res, next) {
+		if (req.profile.id != req.user.id) {
+			req.flash('info', 'You are not authorized');
+			return res.redirect('/');
+		}
+		next();
+	}
+}
 
 /**
  * Comment authorization routing middleware

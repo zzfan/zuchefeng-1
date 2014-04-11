@@ -3,9 +3,10 @@
  */
 
 var mongoose = require('mongoose')
-, Seller = mongoose.model('Seller')
-, User = mongoose.model('User')
-    , utils = require('../../lib/utils');
+	, Seller = mongoose.model('Seller')
+	, User = mongoose.model('User')
+    , utils = require('../../lib/utils')
+	, extend = require('util')._extend;
 
 exports.login = function(req, res) {
     res.render('sellers/login', {
@@ -52,6 +53,37 @@ exports.create = function(req, res) {
         });
     });
 };
+
+exports.edit = function(req, res) {
+	res.render('sellers/edit', {
+		user: req.user,
+		title: '编辑用户信息'
+	});
+}
+
+var convert = function(obj) {
+	return {
+		company: {
+			name: obj.companyName,
+			subname: obj.companySubname,
+			addr: obj.companyAddr,
+			desc: obj.conpanyDesc
+		},
+		fix: obj.fix,
+		mobile: obj.mobile
+	};
+};
+
+exports.update = function(req, res) {
+	var seller = req.profile;
+	seller = extend(seller, convert(req.body));
+	console.log(seller);
+	seller.save(function(err) {
+		if (err) throw err;
+		req.flash('success', 'update success')
+		return res.redirect('/sellers/'+seller._id+'/dashboard')
+	});
+}
 
 exports.load = function(req, res, next, id) {
     Seller.load(id, function(err, seller) {

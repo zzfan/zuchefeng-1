@@ -115,10 +115,8 @@ exports.createOrder = function(req, res) {
     var cb = function(err) {
         //TODO res.render?
         if (err) {
-            console.log('erroo');
             res.render('500');
         }
-        console.log('suuu');
         res.redirect('/');
     };
     cb = function(err) {

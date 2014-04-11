@@ -10,7 +10,7 @@ var users = require('../app/controllers/users')
 
 var userAuth = [auth.requiresLogin, auth.user.hasAuthorization]
 var carAuth = [auth.requiresLogin, auth.car.hasAuthorization]
-var sellerAuth = [auth.requiresLogin, auth.requiresSeller]
+var sellerAuth = [auth.requiresLogin, auth.seller.hasAuthorization]
 
 module.exports = function (app, passport) {
 
@@ -44,10 +44,13 @@ module.exports = function (app, passport) {
 	);
 	app.get('/sellers/:sellerId', sellers.show);
 	app.get('/sellers/:sellerId/dashboard', sellers.dashboard);
+	app.get('/sellers/:sellerId/edit', sellerAuth, sellers.edit);
+	app.post('/sellers/:sellerId', sellerAuth, sellers.update);
+	
 
 
     app.get('/cars', cars.index);
-    app.get('/cars/new', sellerAuth, cars.new);
+    app.get('/cars/new', auth.requiresSeller, cars.new);
     app.post('/cars', auth.requiresLogin, cars.create);
     app.get('/cars/:carId', cars.show);
     app.get('/cars/:carId/edit', carAuth, cars.edit);

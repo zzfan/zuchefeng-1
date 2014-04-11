@@ -1,0 +1,53 @@
+.row.hebi-block-main
+    form.form-horizontal(method='post', action='/sellers/'+user._id, enctype='multipart/form-data', role='form')
+        input(type='hidden', name='_csrf', value='#{csrf_token}')
+
+        - var formParam = { name: 'name', value: user.name, holder: '请输入用户名', label: '用户名', disabled: true }
+        include formGroup
+        - var formParam = { name: 'email', value: user.email, holder: '请输入邮箱', label: '邮箱', disabled: true }
+        include formGroup
+        - var formParam = { name: 'companyName', value: user.company.name, holder: '请输入公司名称', label: '公司名称' }
+        include formGroup
+        - var formParam = { name: 'fix', value: user.fix, holder: '请输入固定电话', label: '固定电话' }
+        include formGroup
+        - var formParam = { name: 'mobile', value: user.mobile, holder: '请输入手机号', label: '手机' }
+        include formGroup
+
+        .form-group
+            .col-sm-offset-2.col-sm-10
+                button.btn.btn-primary(type='submit') 保存
+                &nbsp;
+                a.btn.btn-danger(href='/sellers/'+user._id+'/dashboard', title='取消') 取消
+    //table.table#profile-table
+        tr
+            th.col-md-3 项目
+            th 值
+        tr
+            td 用户名
+            td= user.name
+        tr
+            td 邮箱
+            td= user.email
+        tr
+            td 手机号
+            td= user.mobile
+        tr
+            td 固定电话
+            td= user.fix
+        tr
+            td 公司名称
+            td= user.company.name
+        tr
+            td 公司地址
+            td= user.company.addr
+        tr
+            td 公司简介
+            td= user.company.desc
+//script.
+    $().ready(function() {
+        $('#profile-table tr td:last-child').click(function(){
+            var value = $(this);
+            alert(value);
+            //$(this).html('<input type="text" value='+value+'"></input>');
+        })
+    })

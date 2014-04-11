@@ -4,20 +4,17 @@
 extends ../layouts/default
 
 block main
-    h1= user.name + '的控制面板'
+    //.col-md-12.column
+        .page-header
+            h1= title
 
 block content
-    .col-md-2
-        ul.nav.nav-pills.nav-stacked
-            li(class='')
-                a(href='/cars/new', title='添加新车') 添加新车
-                
-    .col-md-10
-        - if (user.cars.length)
-            p 当前车辆
+    .row
+        .col-md-3
+            include ../utils/dashNavs
+            
+        .col-md-9
+            include ../utils/dashWelInfo
+            //TODO recent orders
             - each car in user.cars
-                p= car
-        - else
-            p 还没有添加车辆，点击
-                a(href='/cars/new') 这里
-                p 立即添加
+                include ../utils/dashCar

@@ -1,0 +1,9 @@
+// @param formParam = {name, value, label, holder}
+
+.form-group
+    label.col-sm-2.control-label(for=formParam.name)= formParam.label
+    .col-sm-10
+        - if (formParam.disabled)
+            input.form-control(id=formParam.name, type='text', name=formParam.name, value=formParam.value, placeholder=formParam.holder, disabled)
+        - else
+            input.form-control(id=formParam.name, type='text', name=formParam.name, value=formParam.value, placeholder=formParam.holder)

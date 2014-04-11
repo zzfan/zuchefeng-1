@@ -10,7 +10,15 @@ var mongoose = require('mongoose')
 
 var SellerSchema = new Schema({
     name: {type: String, default: ''},
-    company: { type: String, default: ''},
+    company: {
+    	name: { type: String, default: ''},
+		addr: { type: String, default: ''},
+		subname: { type: String, default: ''},
+		desc: { type: String, default: ''}
+    },
+	//TODO check validation of phone numbers
+	fix: { type: String, default: ''},
+	mobile: { type: String, default: ''},
 	type: {type: String, default: 'Seller'},
     email: {type: String, default: ''},
     hashed_password: {type: String, default: ''},

@@ -4,10 +4,13 @@
 extends ../layouts/default
 
 block main
-    h1= user.name + '的公司详情'
+    .col-md-12.column
+        .page-header
+            h1 #{user.company.name} 的公司主页
+                small= user.company.subname
 
 block content
-                
+    include ../utils/sellerInfo
     .col-md-10
         - if (user.cars.length)
             p 当前车辆

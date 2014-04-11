@@ -1,0 +1,48 @@
+.row#current-order
+    div
+        h3 订单号 #{order._id}
+        table.table
+            tr
+                th 项目
+                th 值
+            tr
+                td 汽车名称
+                td= order.car.name
+            tr
+                td 租赁公司
+                td= order.car.seller
+            tr
+                td 价格
+                td= order.price
+            tr
+                td 开始时间
+                td= order.from
+            tr
+                td 结束时间
+                td= order.to
+            tr
+                td 备注
+                td= order.extra
+        #step-bar
+            span(style='display: inline-block')
+                //should deal with inline-block's spaces
+                .step.step-first.step-done
+                    .step-line
+                    .step-circle
+                    .step-line
+                    p 在线预定
+                .step.step-first.step-done
+                    .step-line
+                    .step-circle
+                    .step-line
+                    p 取车
+                .step.step-first.step-done
+                    .step-line
+                    .step-circle
+                    .step-line
+                    p 还车
+                .step.step-first.step-done
+                    .step-line
+                    .step-circle
+                    .step-line
+                    p 确认及评价

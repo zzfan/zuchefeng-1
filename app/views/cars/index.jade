@@ -6,28 +6,12 @@ extends ../layouts/default
     h1= title
 
 block content
-    div.panel-group#area-panel
-        div.panel.panel-default
-            div.panel-heading
-                ul.breadcrumb.panel-heading
-                    li
-                        a(href='#') 安徽
-                    li
-                        a(href='#') 合肥
-                    li
-                        a(href='#') 蜀山区
-                    li.active
-                        a(href='#') 中科大
-                    li.navbar-right
-                        a.panel-title.collapsed(data-toggle='collapse' href='#select-city') 展开
-            div.panel-collapse.collapse#select-city
-                div.panel-body
-                    三里庵 国购 万达广场
+    include ../utils/area.jade
                     
-    - for (var i=0; i<cars.length/3; i++)
+    - for (var i=0; i<Math.ceil(cars.length/3); i++)
         - console.log(cars.length)
         div.row
-            - for (var j=0; j<3; j++)
+            - for (var j=0; j<3&&i*3+j<cars.length; j++)
                 - var car = cars[i*3+j]
                 div.col-md-4
                     div.thumbnail
@@ -40,10 +24,9 @@ block content
                                 - if (car.seller)
                                     &nbsp; - &nbsp;
                                     span 拥有者 &nbsp;
-                                    a(href='/users/'+car.seller._id)= car.seller.name
+                                    a(href='/sellers/'+car.seller._id)= car.seller.name
                             p
-                                a.btn.btn-primary(href='#') 预定
-                                a.btn(href='#') 查看详情
+                                a.btn.btn-primary(href='/cars/'+car._id) 查看详情
     - if (pages>1)
         ul.pagination
             != createPagination(pages, page)
