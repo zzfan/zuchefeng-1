@@ -15,9 +15,14 @@ block content
         //TODO how does this work
         p.muted= formatDate(car.createdAt, "%b %d, %Y at %I:%M %p")
   .row
-    .col-md-4
+    .col-md-offset-1.col-md-4
       - if (!car.isNew && car.image)
-        img(src=car.image.url)
+        img(src=car.image.url256x256)
+    .col-md-offset-1.col-md-4
+      h1= car.name
+      p 拥有者: &nbsp;
+        a(href='/sellers/'+car.seller._id)= car.seller.name
+      p= formatDate(car.createdAt, "%b %d, %Y at %I:%M %p")
 
   - if (user && user.type == 'Seller' && user._id.toString() == car.seller._id.toString())
     //TODO complete this 2 function
