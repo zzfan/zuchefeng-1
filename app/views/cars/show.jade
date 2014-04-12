@@ -1,41 +1,41 @@
 extends ../layouts/default
 
 block main
-    h1= car.name
+  h1= car.name
 
 block content
-    .row
-        .col-md-8
-            - if (car.seller)
-                p 拥有者：&nbsp;
-                    a(href='/sellers/'+car.seller._id)= car.seller.name
+  .row
+    .col-md-8
+      - if (car.seller)
+        p 拥有者：&nbsp;
+          a(href='/sellers/'+car.seller._id)= car.seller.name
 
-            p= '车辆描述：' + car.desc
-            .meta
-                //TODO how does this work
-                p.muted= formatDate(car.createdAt, "%b %d, %Y at %I:%M %p")
+      p= '车辆描述：' + car.desc
+      .meta
+        //TODO how does this work
+        p.muted= formatDate(car.createdAt, "%b %d, %Y at %I:%M %p")
+  .row
+    .col-md-4
+      - if (!car.isNew && car.image)
+        img(src=car.image.url)
 
-        .col-md-4
-            - if (!car.isNew && car.image)
-                img(src=car.image.url)
-                
-    - if (user.type == 'Seller' && user._id.toString() == car.seller._id.toString())
-        //TODO complete this 2 function
-        form(action='/cars/'+car._id, method='post', onsubmit="return confirm('将会删除该车，确定吗？')")
-            input(type='hidden', name='_csrf', value='#{csrf_token}')
-            a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑
-            &nbsp;
-            //TODO 1. how it works; 2. can delete work?
-            input(type='hidden', name='_method', value='DELETE')
-            button.btn.btn-danger(type='submit') 删除
+  - if (user && user.type == 'Seller' && user._id.toString() == car.seller._id.toString())
+    //TODO complete this 2 function
+    form(action='/cars/'+car._id, method='post', onsubmit="return confirm('将会删除该车，确定吗？')")
+      input(type='hidden', name='_csrf', value='#{csrf_token}')
+      a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑
+      &nbsp;
+      //TODO 1. how it works; 2. can delete work?
+      input(type='hidden', name='_method', value='DELETE')
+      button.btn.btn-danger(type='submit') 删除
+  - else
+    a.btn.btn-warning(href='/cars/'+car._id+'/order') 预定
+
+  br
+  .row
+    h2 当前订单：
+    - if (car.orders.length)
+      - each order in car.orders
+        p= order
     - else
-        a.btn.btn-warning(href='/cars/'+car._id+'/order') 预定
-
-    br
-    .row
-        h2 当前订单：
-        - if (car.orders.length)
-            - each order in car.orders
-                p= order
-        - else
-            p 没有订单
+      p 没有订单
