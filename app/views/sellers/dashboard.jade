@@ -11,10 +11,10 @@ block main
 block content
     .row
         .col-md-3
-            include ../utils/dashNavs
-            
+            include utils/dashNavs
+
         .col-md-9
-            include ../utils/dashWelInfo
+            include utils/dashWelInfo
             //TODO recent orders
             - each car in user.cars
-                include ../utils/dashCar
+                include utils/dashCar

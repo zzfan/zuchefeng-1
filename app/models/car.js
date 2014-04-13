@@ -9,19 +9,22 @@ var mongoose = require('mongoose')
 ;
 
 var CarSchema = new Schema({
-  name: {type: String, default: ''},
-  seller: { type: Schema.ObjectId, ref: 'Seller'},
-  //TODO select from brands
-  brand: { type: String, default: ''},
-  number: {type: String, default: ''},
-  desc: {type: String, default: '', trim: true},
-  orders: [{
-    type: Schema.ObjectId, ref: 'Order'
+  name:     {type: String, default: ''},
+  seller:   { type: Schema.ObjectId, ref: 'Seller'},
+  brand:    { type: String, default: ''},
+  number:   {type: String, default: ''},
+  price:    { type: Number, default: ''},
+  desc:     {type: String, default: '', trim: true},
+  detail:   { type: String, default: ''},
+  orders:   [{ type: Schema.ObjectId, ref: 'Order'}],
+  pastOrders: [{ type: Schema.ObjectId, ref: 'Order'}],
+  ratings:  [{
+    user:   { type: Schema.ObjectId, ref: 'User'},
+    order:  { type: Schema.ObjectId, ref: 'Order'},
+    comments: {type: String, default: ''},
+    point:  { type: Number, default: -1}
   }],
-  pastOrders: [{
-    type: Schema.ObjectId, ref: 'Order'
-  }],
-  image: {
+  image:    {
     url128x128: String,
     url256x256: String
   },

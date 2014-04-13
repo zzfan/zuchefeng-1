@@ -9,6 +9,17 @@ block main
             h1= title
 
 block content
+
+  .modal.fade#brand-modal(role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+          .modal-content
+              .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true') x
+                  h4.modal-title#myModalLabel 选择品牌
+              .modal-body
+                include utils/brands
+              .modal-footer
+
     - var action = '/cars' + (car.isNew ? '' : '/'+car._id) //TODO ?
 
     .row
@@ -20,20 +31,24 @@ block content
                     //TODO how does this work
                     input(type='hidden', name='_method', value='PUT')
 
-                .form-group
-                    label.col-sm-2.control-label(for='name') 名称
-                    .col-sm-10
-                        input.form-control#name(type='text', name='name', value=car.name, placeholder='请输入标题')
-                //TODO select from brands
-                .form-group
-                    label.col-sm-2.control-label(for='brand') 品牌
-                    .col-sm-10
-                        input.form-control#brand(type='text', name='brand', value=car.brand, placeholder='请输入品牌')
+                - var formParam = { name: 'name', value: car.name, holder: '请输入标题', label: '标题'}
+                include ../utils/formGroup
 
                 .form-group
-                    label.col-sm-2.control-label(for='image') 图片
-                    .col-sm-10
-                        input#image(type='file', name='image')
+                  label.col-sm-2.control-label(for='brand') 品牌
+                  .col-sm-10
+                    .input-group
+                      input.form-control#brand(name='brand', type='text')
+                      span.input-group-btn
+                        button.btn.btn-primary(type='button', data-toggle='modal' href='#brand-modal') 选择
+
+
+                - var formParam = { name: 'price', value: car.price, holder: '请输入价格', label: '价格'}
+                include ../utils/formGroup
+                - var formParam = { name: 'number', value: car.number, holder: '请输入车牌号', label: '车牌号'}
+                include ../utils/formGroup
+                - var formParam = { name: 'image', type: 'file', label: '图片'}
+                include ../utils/formGroup
 
                 .form-group
                     label.col-sm-2.control-label(for='desc') 描述

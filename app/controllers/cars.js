@@ -1,7 +1,10 @@
 /**
- * @file controllers/car.js
+ * Controller for cars
+ *
+ * @param
+ * @returns
  */
-
+ 
 var mongoose = require('mongoose')
     , Car = mongoose.model('Car')
     , Order = mongoose.model('Order')
@@ -129,7 +132,7 @@ exports.createOrder = function(req, res) {
     order.buyer = req.user;
     order.car = req.car;
     order.save(cb);
-	
+
 	req.car.addOrder(order._id);
 	req.user.addOrder(order._id);
     res.redirect('/');

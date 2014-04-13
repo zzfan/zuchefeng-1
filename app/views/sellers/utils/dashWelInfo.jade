@@ -1,0 +1,26 @@
+.row#welcome-info.hebi-block-main
+
+    - var url = (user.image == '')? '/img/profile-default.jpg' : user.image
+    - console.log(user.image)
+    .col-md-2
+        a(href='#head-modal', role='button', data-toggle='modal', title='更换头像')
+            img(src=url)
+        // enctype is necessary for req.files to work
+        form(action='/sellers/'+user._id+'/head', method='post', enctype='multipart/form-data', role='form')
+            input(type='hidden', name='_csrf', value='#{csrf_token}')
+            .modal.fade#head-modal(role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            button.close(type='button', data-dismiss='modal', aria-hidden='true') x
+                            h4.modal-title#myModalLabel 更换头像
+                        .modal-body
+                            input(type='file', name='image')
+                        .modal-footer
+                            button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                            button.btn.btn-primary(type='submit') 保存
+    .col-md-10
+        .row
+            h3= user.name+'，早上好～'
+        .row
+            p 账户安全级别：高
