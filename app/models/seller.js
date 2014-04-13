@@ -26,7 +26,10 @@ var SellerSchema = new Schema({
 	cars: [{
 		type: Schema.ObjectId, ref: 'Car'
 	}],
-	image: { type: String, default: ''}
+	image: {
+    url128x128: {type: String, default: ''},
+    url256x256: { type: String, default: ''}
+  }
 });
 
 SellerSchema.virtual('password')
@@ -61,15 +64,30 @@ SellerSchema.methods = {
 			if (err) throw err;
 		});
 	},
-    moveAndSave: function(image, cb) {
-        var self = this;
-        utils.moveImage(image, 'public/img/upload/', function(newFile) {
-            utils.thumbnailImage(newFile, 'public/img/thumbnail/', function(url) {
-                self.image = url.substr(6);
-                self.save(cb);
-            });
+  moveAndSave: function(image, cb) {
+    var self = this;
+    utils.moveImage(image, 'public/img/upload/', function(newFile) {
+      utils.thumbnailImage({
+        src: newFile,
+        target: 'public/img/thumbnail/128x128/', //the last '/' is must
+        width: 128,
+        height: 128
+      }, function(url) {
+        self.image.url128x128 = url.substr(6); //get rid of public
+        //TODO let these 2 thumbnail 同时do
+        //generate another 256x256 image
+        utils.thumbnailImage({
+          src: newFile,
+          target: 'public/img/thumbnail/256x256/',
+          width: 256,
+          height: 256
+        }, function(url) {
+          self.image.url256x256 = url.substr(6);
+          self.save(cb);
         });
-    },
+      });
+    });
+  }
 };
 SellerSchema.statics = {
     load: function(id, cb) {

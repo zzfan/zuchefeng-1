@@ -1,7 +1,6 @@
 .row#welcome-info.hebi-block-main
 
-    - var url = (user.image == '')? '/img/profile-default.jpg' : user.image
-    - console.log(user.image)
+    - var url = (user.image.url128x128 == '')? '/img/profile-default.jpg' : user.image.url128x128
     .col-md-2
         a(href='#head-modal', role='button', data-toggle='modal', title='更换头像')
             img(src=url)
