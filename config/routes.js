@@ -36,9 +36,9 @@ module.exports = function (app, passport) {
 	app.post('/sellers', sellers.create);
 	app.get('/sellers/login', sellers.login);
 	app.get('/sellers/:sellerId', sellers.show);
-	app.post('/sellers/session', 
+	app.post('/sellers/session',
 		passport.authenticate('seller', {
-			failureRedirect: '/sellers/login', 
+			failureRedirect: '/sellers/login',
 			failureFlash: 'Invalid email or password'
 		}), sellers.session
 	);
@@ -47,7 +47,7 @@ module.exports = function (app, passport) {
 	app.get('/sellers/:sellerId/edit', sellerAuth, sellers.edit);
 	app.post('/sellers/:sellerId', sellerAuth, sellers.update);
 	app.post('/sellers/:sellerId/head', sellerAuth, sellers.head);
-	
+
 
 
     app.get('/cars', cars.index);
@@ -55,6 +55,7 @@ module.exports = function (app, passport) {
     app.post('/cars', auth.requiresLogin, cars.create);
     app.get('/cars/:carId', cars.show);
     app.get('/cars/:carId/edit', carAuth, cars.edit);
+    app.get('/cars/:carId/detail', carAuth, cars.detail);
     app.put('/cars/:carId', carAuth, cars.update);
     app.del('/cars/:carId', carAuth, cars.destroy);
 

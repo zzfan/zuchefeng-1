@@ -1,6 +1,7 @@
 .row.hebi-block-main
     .col-md-2
-        img(src=car.image.url)
+        a(href='/cars/'+car.id)
+          img(src=car.image.url128x128)
     .col-md-8
         p ID #{car.id}
         p 名称 #{car.name}
@@ -13,5 +14,3 @@
             a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑
             input(type='hidden', name='_method', value='DELETE')
             button.btn.btn-danger(type='submit') 删除
-        p
-            a(href='/cars/'+car.id) 查看详情

@@ -38,7 +38,7 @@ block content
                   label.col-sm-2.control-label(for='brand') 品牌
                   .col-sm-10
                     .input-group
-                      input.form-control#brand(name='brand', type='text')
+                      input.form-control#brand(name='brand', type='text', value=car.brand, placeholder='请点击右侧按钮，然后选择一个')
                       span.input-group-btn
                         button.btn.btn-primary(type='button', data-toggle='modal' href='#brand-modal') 选择
 
@@ -59,4 +59,4 @@ block content
                     .col-sm-offset-2.col-sm-10
                         button.btn.btn-primary(type='submit') 保存
                         &nbsp;
-                        a.btn.btn-danger(href='/cars', title='取消') 取消
+                        a.btn.btn-danger(href='/cars/'+car._id, title='取消') 取消

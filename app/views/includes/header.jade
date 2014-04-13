@@ -1,6 +1,6 @@
 header.navbar.navbar-static-top.bs-docs-nav.navbar-inverse#top(role='banner')
     div.container
-        div.navbar-header
+        div.navbar-header.pd-r-20
             button.navbar-toggle(type='button', data-toggle='collapse', data-target='.bs-navbar-collapse')
                 span.sr-only Toggle Navigation
                 span.icon-bar
@@ -19,7 +19,7 @@ header.navbar.navbar-static-top.bs-docs-nav.navbar-inverse#top(role='banner')
                     - else
                         - var url = '/users/'+req.user._id
                     li
-                        a(href=url, title="Profile") #{req.user.name} 的个人中心 
+                        a(href=url, title="Profile") #{req.user.name} 的个人中心
                     li
                         a(href="/logout", title="logout") 退出
                 - else

@@ -10,15 +10,19 @@ block content
     .col-md-4.mg-l-20
       h1= car.name
       p 价格: #{car.price}
+      p 车牌号: #{car.number}
       p 拥有者: &nbsp;
         a(href='/sellers/'+car.seller._id)= car.seller.name
+      p 汽车描述: #{car.desc}
       p= formatDate(car.createdAt, "%b %d, %Y at %I:%M %p")
 
       - if (user && user.type == 'Seller' && user._id.toString() == car.seller._id.toString())
         //TODO complete this 2 function
         form(action='/cars/'+car._id, method='post', onsubmit="return confirm('将会删除该车，确定吗？')")
           input(type='hidden', name='_csrf', value='#{csrf_token}')
-          a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑
+          a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑信息
+          &nbsp;&nbsp;
+          a.btn.btn-primary(href='/cars/'+car._id+'/detail') 编写图文详情
           &nbsp;
           //TODO 1. how it works; 2. can delete work?
           input(type='hidden', name='_method', value='DELETE')
