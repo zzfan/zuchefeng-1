@@ -25,10 +25,10 @@ exports.create = (req, res) ->
   cb = (err) ->
     exports.edit req, res if err
     req.flash 'info', '成功创建新车'
-    req.user.addCar car._id
+    req.user.addCar car
     res.redirect "/cars/#{car._id}"
   if req.files.image.originalFilename
-    car.moveAndSave req.files.image, cb
+    car.addImageUrl (utils.moveToUpload req.files.image), cb
   else
     car.save cb
 
@@ -65,7 +65,7 @@ exports.update = (req, res) ->
     exports.edit req, res if err
     res.redirect "/cars/#{car._id}"
   if req.files.image.originalFilename
-    car.moveAndSave req.files.image, cb
+    car.addImageUrl (utils.moveToUpload req.files.image), cb
   else
     car.save cb
 

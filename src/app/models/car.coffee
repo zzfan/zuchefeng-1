@@ -23,30 +23,15 @@ CarSchema = new Schema
     comment: type: String, default: ''
     point: type: Number, default: -1
   ]
-  image:
-    url128x128: String
-    url256x256: String
+  image: type: String, default: ''
   createdAt: type: Date, default: Date.now
 
 CarSchema.methods =
-  moveAndSave: (image, cb) ->
-    self = this
-    utils.moveImage image, 'public/img/upload/', (newFile) ->
-      utils.thumbnailImage
-        src: newFile
-        target: 'public/img/thumbnail/128x128/'
-        width: 128
-        height: 128
-        , (url) ->
-          self.image.url128x128 = url.substr(6)
-          utils.thumbnailImage
-            src: newFile
-            target: 'public/img/thumbnail/256x256/'
-            width: 256
-            heigtht: 256
-            , (url) ->
-              self.image.url256x256 = url.substr(6)
-              self.save cb
+  addImageUrl: (url, cb) ->
+    cb = if cb? then cb else (err) ->
+      throw err if err
+    @image = url
+    @save cb
   addOrder: (order) ->
     @orders.push order._id
     @save (err) ->
