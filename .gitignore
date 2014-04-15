@@ -3,5 +3,6 @@ node_modules/
 public/img/upload
 public/img/thumbnail
 app/
+!src/app/
 lib/
 !src/lib/
