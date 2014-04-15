@@ -80,5 +80,12 @@ module.exports = {
       callbackURL: "http://localhost:3000/auth/linkedin/callback"
     }
   },
-  production: {}
+  production: {
+    db: 'mongodb://localhost/zuchefeng',
+    root: rootPath,
+    notifier: notifier,
+    app: {
+      name: 'zuchefeng'
+    }
+    }
 }
