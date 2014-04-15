@@ -21,9 +21,7 @@ SellerSchema = new Schema
   hashed_password: type: String, default: ''
   salt: type: String, default: ''
   cars: [ type: Schema.ObjectId, ref: 'Car']
-  image:
-    url128x128: type: String, default: ''
-    url256x256: type: String, default: ''
+  image: type: String, default: ''
 
 SellerSchema.virtual('password')
 .set (password) ->
@@ -50,24 +48,10 @@ SellerSchema.methods =
     @cars.push(car._id)
     @save (err) ->
       throw err if err
-  moveAndSave: (image, cb) ->
-    self = this
-    utils.moveImage image, 'public/img/upload/', (newFile) ->
-      utils.thumbnailImage
-        src: newFile
-        target: 'public/img/thumbnail/128x128/'
-        width: 128
-        height: 128
-        , (url) ->
-          self.image.url128x128 = url.substr 6
-          utils.thumbnailImage
-            src: newFile
-            target: 'public/img/thumbnail/'
-            width: 256
-            height: 256
-            , (url) ->
-              self.image.url256x256 = url.substr 6
-              self.save cb
+  addImageUrl: (url) ->
+    @image = url
+    @save (err) ->
+      throw err if err
 
 SellerSchema.statics =
   load: (id, cb) ->

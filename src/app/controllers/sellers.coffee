@@ -64,13 +64,9 @@ exports.update = (req, res) ->
 exports.head = (req, res) ->
   seller = req.profile
   if req.files.image.originalFilename
-    seller.moveAndSave req.files.image, (err) ->
-      if err throw err
-      else
-        req.flash 'success', '成功上传头像'
-        res.redirect "/sellers/#{seller._id}/dashboard"
-  else
-    res.redirect "/sellers/#{seller._id}/dashboard"
+    seller.addImageUrl utils.moveToUpload req.files.image
+    req.flash 'success', '成功上传头像'
+  res.redirect "/sellers/#{seller._id}/dashboard"
 
 exports.load = (req, res, next, id) ->
   Seller.load id, (err, seller) ->

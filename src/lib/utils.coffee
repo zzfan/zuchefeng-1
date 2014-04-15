@@ -4,6 +4,37 @@ utils
 easyimage = require 'easyimage'
 fs = require 'fs'
 
+env = process.env.NODE_ENV || 'development'
+config = require('../config/config')[env]
+
+exports.moveToUpload = (file) ->
+  src = file.path # '/var/xxx/xxx/ccc/xffsj.jpg'
+  index = file.path.lastIndexOf '/'
+  filename = file.path.substr index+1 # xffsj.jpg
+  dst = config.imgUpload + filename # public/img/xxx/xx.jpg
+  fs.rename src, dst, (err) ->
+    throw err if err
+  dst.substr(6) # /img/xxx/xx.jpg
+
+resizeImage = (src) ->
+  index = image.lastIndexOf '/'
+  filename = image.substr index+1
+  for [width, height] in config.imgSizes
+    dst = "#{config.imgResize}#{height}x#{width}/#{filename}"
+    easyimage.resize src, dst, width, heigth, (err) ->
+      throw err if err
+
+exports.getImageUrls = (file) ->
+  index = file.path.lastIndexOf '/'
+  filename = file.path.substr index+1
+  # TODO delete the uploaded image
+  for [width, height] in config.imgSizes
+    key = "url#{width}x#{height}"
+    value = "#{config.imgResize}#{height}x#{width}/#{filename}"
+    _obj = {}
+    _obj[key] = value
+    _obj
+
 exports.moveImage = (file, dst, cb) ->
   tmpPath = file.path
   index = file.path.lastIndexOf '/'
