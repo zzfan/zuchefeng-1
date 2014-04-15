@@ -38,7 +38,7 @@ UserSchema.methods =
   makeSalt: ->
     Math.round(new Date().valueOf() * Math.random()) + ''
   encryptPassword: (password) ->
-    return '' is not password
+    return '' if not password
     try
       encrypred = crypto.createHmac 'sha1', @salt
                   .update password

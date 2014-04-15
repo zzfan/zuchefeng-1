@@ -35,14 +35,15 @@ SellerSchema.virtual('password')
 
 SellerSchema.methods =
   authenticate: (password) ->
-    @encryptPassword password is @hashed_password
+    @hashed_password is @encryptPassword password
   makeSalt: ->
     Math.round(new Date()).valueOf() * Math.random() + ''
   encryptPassword: (password) ->
     return '' if not password
     try
-      encrypred = crypto.createHmac('sha1', @salt)
-                        .update(password).digest('hex')
+      encrypred = crypto.createHmac 'sha1', @salt
+                  .update password
+                  .digest 'hex'
     catch err
       ''
   addCar: (car) ->
