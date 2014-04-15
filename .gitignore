@@ -4,3 +4,4 @@ public/img/upload
 public/img/thumbnail
 app/
 lib/
+!src/lib/
