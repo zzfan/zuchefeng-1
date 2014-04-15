@@ -73,7 +73,7 @@ exports.head = (req, res) ->
     res.redirect "/sellers/#{seller._id}/dashboard"
 
 exports.load = (req, res, next, id) ->
-  Seller.load id (err, seller) ->
+  Seller.load id, (err, seller) ->
     if err then next err
     else if not seller then next new Error '载入用户失败'
     else req.profile = seller; next()
