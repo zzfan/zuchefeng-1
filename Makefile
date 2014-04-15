@@ -11,3 +11,9 @@ uploaddir:
 	mkdir -p public/img/upload
 	mkdir -p public/img/thumbnail/128x128
 	mkdir -p public/img/thumbnail/256x256
+
+dev:
+	node-dev app
+
+server:
+	NODE_ENV=production PORT=80  nodejs app
