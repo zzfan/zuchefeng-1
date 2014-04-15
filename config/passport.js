@@ -66,7 +66,7 @@ module.exports = function (passport, config) {
       })
     }
   ))
-
+/*
   // use twitter strategy
   passport.use(new TwitterStrategy({
       consumerKey: config.twitter.clientID,
@@ -204,4 +204,5 @@ module.exports = function (passport, config) {
       })
     }
     ));
+    */
 }
