@@ -2,6 +2,7 @@
 utils
 ###
 easyimage = require 'easyimage'
+fs = require 'fs'
 
 exports.moveImage = (file, dst, cb) ->
   tmpPath = file.path
