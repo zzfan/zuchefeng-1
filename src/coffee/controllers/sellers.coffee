@@ -64,7 +64,7 @@ exports.update = (req, res) ->
 exports.head = (req, res) ->
   seller = req.profile
   if req.files.image.originalFilename
-    seller.moveAndSave req.file.image, (err) ->
+    seller.moveAndSave req.files.image, (err) ->
       if err throw err
       else
         req.flash 'success', '成功上传头像'
