@@ -7,6 +7,7 @@ var users = require('../app/controllers/users')
 	, sellers = require('../app/controllers/sellers')
     , cars = require('../app/controllers/cars')
     , auth = require('./middlewares/authorization')
+    , utils = require('../lib/utils.js')
 
 var userAuth = [auth.requiresLogin, auth.user.hasAuthorization]
 var carAuth = [auth.requiresLogin, auth.car.hasAuthorization]
@@ -61,4 +62,6 @@ module.exports = function (app, passport) {
 
     app.get('/cars/:carId/order', auth.requiresLogin, cars.order);
     app.post('/cars/:carId/order', auth.requiresLogin, cars.createOrder);
+
+    app.get('/find/img/upload/:img/:size', utils.getImage);
 }

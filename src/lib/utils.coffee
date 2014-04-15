@@ -7,6 +7,28 @@ fs = require 'fs'
 env = process.env.NODE_ENV || 'development'
 config = require('../config/config')[env]
 
+exports.getImage = (req, res) ->
+  filename = req.params.img
+  [width, height] = req.params.size.split('x')
+  easyimage.resize
+    src: "public/img/upload/#{filename}"
+    dst: "public/img/cache/#{filename}"
+    width: width
+    height: height
+    , (err, img) ->
+      # TODO 有这么几个疑点
+      # 1. easyimage是异步的吗？ 2. 它返回的这个img怎么不能用
+      img = fs.readFile "public/img/cache/#{filename}", (err, img) ->
+        res.writeHead 200, {'Content-Type': 'image/png' }
+        res.end(img, 'binary')
+      #res.writeHead 200, {'Content-Type': 'image/png' }
+      #res.end(img, 'binary')
+      ###
+  img = fs.readFile "public/img/upload/#{filename}", (err, img) ->
+    res.writeHead 200, {'Content-Type': 'image/png' }
+    res.end(img, 'binary')
+    ###
+
 exports.moveToUpload = (file) ->
   src = file.path # '/var/xxx/xxx/ccc/xffsj.jpg'
   index = file.path.lastIndexOf '/'

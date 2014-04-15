@@ -9,6 +9,7 @@ view:
 
 uploaddir:
 	mkdir -p public/img/upload
+	mkdir -p public/img/cache
 
 dev:
 	NODE_ENV=development PORT=3000 node-dev app

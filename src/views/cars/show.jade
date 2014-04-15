@@ -6,7 +6,7 @@ block content
   .row.mg-20.pd-20.bg-white
     .col-md-offset-0.col-md-3
       - if (!car.isNew && car.image)
-        img(src=car.image.url256x256)
+        img(src='/find'+car.image+'/256x256')
     .col-md-4.mg-l-20
       h1= car.name
       p 价格: #{car.price}
