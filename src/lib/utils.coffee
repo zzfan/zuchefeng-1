@@ -10,7 +10,7 @@ config = require('../config/config')[env]
 exports.getImage = (req, res) ->
   filename = req.params.img
   [width, height] = req.params.size.split('x')
-  easyimage.thumbnail
+  easyimage.resize
     src: "public/img/upload/#{filename}"
     dst: "public/img/cache/#{filename}"
     width: width
