@@ -25,7 +25,8 @@ sudo chkconfig mongod on # start at reboot
 The repo is rather slow, so can just download from official site.
 
 #### rockmongo
-1. apache
+
+##### apache
 
 ```
 apt-get install apache2
@@ -34,20 +35,19 @@ service apache2 status
 /etc/init.d/apache2 status
 ```
 
-2. php
-
+##### php
 may need to enable php in apache2.conf
 
-3. php-mongo driver
+##### php-mongo driver
 
-apt-get install php5-mongo
+`apt-get install php5-mongo`
 
-4. download
+##### download
 http://rockmongo.com/
 
 untar it and put it into /var/www
 
-5. configure
+##### configure
 
 in rockmongo/config.php, change password
 
