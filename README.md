@@ -57,9 +57,11 @@ apt-get install imagemagick
 
 ### Repo
 
+```
 git clone http://github.com/lihebi/zuchefeng
 cd zuchefeng
 npm install
 npm install -g coffee-script
 make
 make dev
+```
