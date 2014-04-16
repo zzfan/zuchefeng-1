@@ -1,18 +1,59 @@
-＃ zuchefeng
+# zuchefeng
 
 ## Install
 
 ### Nodejs & npm
+http://nodejs.org/
+
+If you use ubuntu, just follow these steps:
+```
+sudo apt-get install nodejs
+sudo apt-get install npm
+```
 
 ### MongoDB
+https://www.mongodb.org/
+
+For Ubuntu:
+```
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+sudo apt-get update
+sudo apt-get install mongodb-org
+sudo service mongos start
+sudo chkconfig mongod on # start at reboot
+```
+The repo is rather slow, so can just download from official site.
 
 #### rockmongo
 1. apache
+
+```
+apt-get install apache2
+apt-get install php5 libapache2-mod-php5
+service apache2 status
+/etc/init.d/apache2 status
+```
+
 2. php
+
+may need to enable php in apache2.conf
+
 3. php-mongo driver
-4. configure
+
+apt-get install php5-mongo
+
+4. download
+http://rockmongo.com/
+
+untar it and put it into /var/www
+
+5. configure
+
+in rockmongo/config.php, change password
 
 ### imagemagick
+
+apt-get install imagemagick
 
 ### Repo
 
