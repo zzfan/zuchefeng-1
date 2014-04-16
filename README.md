@@ -25,6 +25,9 @@ sudo chkconfig mongod on # start at reboot
 ```
 The repo is rather slow, so can just download from official site.
 
+32-bit linux:
+http://pan.baidu.com/s/1o62n5Ia
+
 #### rockmongo
 
 ##### apache
