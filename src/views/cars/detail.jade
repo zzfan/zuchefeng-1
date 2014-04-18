@@ -64,12 +64,15 @@ block content
     .btn-group
       a.btn.btn-default(title='Insert picture (or just drag & drop)', id='pictureBtn')
         i.fa.fa-picture-o
-      input(type='file', data-role='magic-overlay', data-target='#pictureBtn', data-edit='insertImage')
+        input(type='file', data-role='magic-overlay', data-target='#pictureBtn', data-edit='insertImage', style='display: inline !important;')
     .btn-group
       a.btn.btn-default(data-edit='undo', title='Undo (Ctrl/Cmd+Z)')
         i.fa.fa-undo
       a.btn.btn-default(data-edit='redo', title='Redo (Ctrl/Cmd+Y)')
         i.fa.fa-repeat
+    .btn-group.pull-right
+      a.btn.btn-primary(title: '保存', id='editor-save', href='#')
+        i.fa.fa-save
   #editor
 
 block foot
