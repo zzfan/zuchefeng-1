@@ -211,3 +211,7 @@ div[data-role="editor-toolbar"] {
 .dropdown-menu a {
   cursor: pointer;
 }
+
+#editor img {
+	max-height: 200px;
+}
