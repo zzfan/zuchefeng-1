@@ -5,5 +5,6 @@ $().ready(function(){
   });
   $('#editor-save').click(function(){
     console.log($('#editor').html());
+    console.log(this);
   });
 });
