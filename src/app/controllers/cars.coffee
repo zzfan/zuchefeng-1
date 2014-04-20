@@ -58,6 +58,10 @@ exports.detail = (req, res) ->
     title: '编辑汽车图文详情'
     car: req.car
 
+exports.updateDetail = (req, res) ->
+  console.log req.params.content
+  res.send 'lalala'
+
 exports.update = (req, res) ->
   car = req.car
   car = extend car, req.body
