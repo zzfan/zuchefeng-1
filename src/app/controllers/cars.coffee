@@ -59,7 +59,7 @@ exports.detail = (req, res) ->
     car: req.car
 
 exports.updateDetail = (req, res) ->
-  console.log req.params.content
+  console.log req.body.content
   res.send 'lalala'
 
 exports.update = (req, res) ->
