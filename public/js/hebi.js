@@ -4,7 +4,15 @@ $().ready(function(){
     $('#brand-modal').modal('hide');
   });
   $('#editor-save').click(function(){
-    console.log($('#editor').html());
-    console.log(this);
+    $.ajax('/cars/'+$(this).data('car-id')+'/detail',{
+      type: "PUT",
+      data: {
+        content: $("#editor").html(),
+        _csrf: $(this).data('csrf')
+      },
+      success: function(res) {
+        console.log(res);
+      }
+    })
   });
 });
