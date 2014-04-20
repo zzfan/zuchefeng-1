@@ -86,3 +86,10 @@ exports.show = (req, res) ->
   res.render 'sellers/show',
     title: '公司详情'
     user: req.profile
+
+exports.updateDetail = (req, res) ->
+  car = req.car
+  car.detail = req.body
+  car.save (err) ->
+    throw err if err
+    res.send '成功更新'
