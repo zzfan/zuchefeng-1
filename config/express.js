@@ -25,6 +25,7 @@ module.exports = function (app, config, passport) {
   }))
 
   //app.use(express.favicon())
+  // Now any request for '/img/xx.jpg' is for 'TOP/public/img/xx.jpg'
   app.use(express.static(config.root + '/public'))
 
   // Logging
@@ -51,6 +52,7 @@ module.exports = function (app, config, passport) {
   app.configure(function () {
     // expose package.json to views
     app.use(function (req, res, next) {
+      // res.locals.xxx can be used as xxx directly in views
       res.locals.pkg = pkg
       next()
     })
