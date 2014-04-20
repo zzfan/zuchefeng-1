@@ -72,13 +72,15 @@ block content
         i.fa.fa-repeat
 
     .btn-group.pull-right
-      a.btn.btn-primary(title='保存', id='editor-save', href='#')
+      //!!!important
+      - var s = car._id.toString()
+      a.btn.btn-primary(title='保存', id='editor-save', href='#', data-car-id=s, data-csrf='#{csrf_token}')
         i.fa.fa-save
     .btn-group.pull-right
       a.btn.btn-primary(title='预览', id='editor-preview', href='#')
         i.glyphicon.glyphicon-expand
   #editor
-
+  p= car._id
 block foot
   script(src='/js/jquery.hotkeys.js')
   script(src='/js/bootstrap-wysiwyg.js')
