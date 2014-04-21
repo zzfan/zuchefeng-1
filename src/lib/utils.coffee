@@ -3,11 +3,22 @@ utils
 ###
 easyimage = require 'easyimage'
 fs = require 'fs'
+aliyun = require 'aliyun.js'
 
 env = process.env.NODE_ENV || 'development'
 config = require('../config/config')[env]
 
+exports.toAliyun = (bucket, object, src) ->
+  option =
+    accessId: env.OSSKeyId
+    accessKey: env.OSSKeySecret
+  oss = new aliyun.OssClient option
+  oss.putObject(bucket, object, src, (err) ->
+    console.log("uploaded, err: #{err}")
+    )
 
+exports.getAliyunUrl = (bucket, object) ->
+  "http://#{bucket}.oss-cn-hangzhou.aliyuncs.com/#{object}"
 
 exports.getImage = (req, res) ->
   filename = req.params.img
