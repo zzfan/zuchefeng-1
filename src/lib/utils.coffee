@@ -7,6 +7,8 @@ fs = require 'fs'
 env = process.env.NODE_ENV || 'development'
 config = require('../config/config')[env]
 
+
+
 exports.getImage = (req, res) ->
   filename = req.params.img
   [width, height] = req.params.size.split('x')
@@ -38,6 +40,7 @@ exports.moveToUpload = (file) ->
     throw err if err
   dst.substr(6) # /img/xxx/xx.jpg
 
+# obselate
 resizeImage = (src) ->
   index = image.lastIndexOf '/'
   filename = image.substr index+1

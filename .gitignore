@@ -7,3 +7,4 @@ app/
 !src/app/
 lib/
 !src/lib/
+config/config.js

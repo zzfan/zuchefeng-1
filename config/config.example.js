@@ -12,6 +12,8 @@ var path = require('path')
       parseAppId: 'PARSE_APP_ID',
       parseApiKey: 'PARSE_MASTER_KEY'
     }
+  , imgRoot = 'public/img/'
+  , imgUpload = imgRoot+'upload/'
 
 module.exports = {
   development: {
@@ -21,31 +23,8 @@ module.exports = {
     app: {
       name: 'Nodejs Express Mongoose Demo'
     },
-    facebook: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
-    },
-    twitter: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/twitter/callback"
-    },
-    github: {
-      clientID: 'APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/auth/github/callback'
-    },
-    google: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/google/callback"
-    },
-    linkedin: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/linkedin/callback"
-    }
+    imgRoot: imgRoot,
+    imgUpload: imgUpload,
   },
   test: {
     db: 'mongodb://localhost/noobjs_test',
@@ -54,31 +33,17 @@ module.exports = {
     app: {
       name: 'Nodejs Express Mongoose Demo'
     },
-    facebook: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
-    },
-    twitter: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/twitter/callback"
-    },
-    github: {
-      clientID: 'APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/auth/github/callback'
-    },
-    google: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/google/callback"
-    },
-    linkedin: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/linkedin/callback"
-    }
+    imgRoot: imgRoot,
+    imgUpload: imgUpload,
   },
-  production: {}
+  production: {
+    db: 'mongodb://localhost/zuchefeng',
+    root: rootPath,
+    notifier: notifier,
+    app: {
+      name: 'zuchefeng'
+    },
+    imgRoot: imgRoot,
+    imgUpload: imgUpload
+  }
 }
