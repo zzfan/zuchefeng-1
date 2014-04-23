@@ -3,7 +3,6 @@ all: compile view uploaddir
 compile:
 	coffee -c -o app src/app
 	coffee -c -o lib src/lib
-	cp src/lib/aliyun.js lib/
 
 view:
 	cp -r src/views app/

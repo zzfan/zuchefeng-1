@@ -73,5 +73,6 @@ module.exports = function (app, passport) {
 
   app.get('/find/img/upload/:img/:size', utils.getImage);
 
+  app.get('/aliyun', utils.tmpAuth);
 
 };

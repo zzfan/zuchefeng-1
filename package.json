@@ -42,7 +42,8 @@
     "async": "latest",
     "view-helpers": "latest",
     "forever": "latest",
-    "easyimage": "latest"
+    "easyimage": "latest",
+    "hebi-cloudstore": "latest"
   },
   "devDependencies": {
     "supertest": "latest",

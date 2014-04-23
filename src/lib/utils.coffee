@@ -3,22 +3,19 @@ utils
 ###
 easyimage = require 'easyimage'
 fs = require 'fs'
-aliyun = require 'aliyun.js'
 
 env = process.env.NODE_ENV || 'development'
 config = require('../config/config')[env]
 
-exports.toAliyun = (bucket, object, src) ->
-  option =
-    accessId: env.OSSKeyId
-    accessKey: env.OSSKeySecret
-  oss = new aliyun.OssClient option
-  oss.putObject(bucket, object, src, (err) ->
-    console.log("uploaded, err: #{err}")
-    )
+Aliyun = require('hebi-cloudstore').Aliyun
 
-exports.getAliyunUrl = (bucket, object) ->
-  "http://#{bucket}.oss-cn-hangzhou.aliyuncs.com/#{object}"
+exports.tmpAuth = (req, res) ->
+  aliyun = new Aliyun({
+  accessId: config.accessId,
+  accessKey: config.accessKey
+  })
+  url = aliyun.getTmpSign('zuchefeng', 'urltest')
+  res.send url
 
 exports.getImage = (req, res) ->
   filename = req.params.img

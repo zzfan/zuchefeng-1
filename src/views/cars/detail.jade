@@ -64,7 +64,13 @@ block content
     .btn-group
       a.btn.btn-default(title='添加图片 (or just drag & drop)', id='pictureBtn')
         i.fa.fa-picture-o
-        input(type='file', data-role='magic-overlay', data-target='#pictureBtn', data-edit='insertImage', style='display: inline !important;')
+        input(type='file', data-role='magic-overlay', data-target='#pictureBtn',
+          data-edit='insertImage', style='display: inline !important;')
+    .btn-group
+      a.btn.btn-primary(title='阿里云图片', id='aliyunBtn')
+        i.fa.fa-picture-o
+        input(type='file', data-role='magic-overlay', id='aliyun' data-target='#aliyunBtn',
+          style='display: inline !important;')
     .btn-group
       a.btn.btn-default(data-edit='undo', title='撤销 (Ctrl/Cmd+Z)')
         i.fa.fa-undo
