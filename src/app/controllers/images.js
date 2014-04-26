@@ -275,10 +275,5 @@ UploadHandler.prototype.destroy = function () {
   }
   handler.callback({success: false});
 };
-if (options.ssl) {
-  require('https').createServer(options.ssl, serve).listen(port);
-} else {
-  require('http').createServer(serve).listen(port);
-}
 
 exports.serve = serve;
