@@ -57,8 +57,8 @@ serve = function (req, res) {
   // initial options
   options.tmpDir = 'tmp';
   options.publicDir = 'public';
-  options.uploadDir = 'public/'+req.car._id;
-  if (!fs.exitsSync(options.uploadDir)) {
+  options.uploadDir = 'public/upload/'+req.car._id;
+  if (!fs.existsSync(options.uploadDir)) {
     fs.mkdirSync(options.uploadDir);
   }
   // TODO ??
