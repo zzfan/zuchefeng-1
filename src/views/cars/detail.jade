@@ -1,4 +1,9 @@
 extend ../layouts/default
+block head
+  link(href="//cdn.bootcss.com/blueimp-gallery/2.15.0/css/blueimp-gallery.min.css", rel="stylesheet")
+  link(href="//cdn.bootcss.com/blueimp-file-upload/9.5.2/css/jquery.fileupload.min.css", rel="stylesheet")
+  link(href="//cdn.bootcss.com/blueimp-file-upload/9.5.2/css/jquery.fileupload-ui.min.css", rel="stylesheet")
+  link(href="//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css", rel="stylesheet")
 
 block main
   .page-header
@@ -164,3 +169,18 @@ block foot
   script(src='/js/jquery.hotkeys.js')
   script(src='/js/bootstrap-wysiwyg.js')
   script(src='/js/editor.js')
+
+  script(src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js")
+  script(src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js")
+  script(src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js")
+  script(src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js")
+
+  script(src="//cdn.bootcss.com/blueimp-gallery/2.15.0/js/jquery.blueimp-gallery.min.js")
+  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.iframe-transport.min.js")
+  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload.js")
+  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-process.min.js")
+  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-image.min.js")
+  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-audio.min.js")
+  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-video.min.js")
+  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-validate.min.js")
+  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-ui.min.js")
