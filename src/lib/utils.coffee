@@ -14,7 +14,7 @@ exports.tmpAuth = (req, res) ->
   accessId: config.accessId,
   accessKey: config.accessKey
   })
-  url = aliyun.getTmpSign('zuchefeng', 'urltest')
+  url = aliyun.getTmpSign('zuchefeng', 'a.txt', 'PUT')
   res.send url
 
 exports.getImage = (req, res) ->

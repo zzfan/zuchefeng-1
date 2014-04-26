@@ -71,6 +71,10 @@ block content
         i.fa.fa-picture-o
         input(type='file', data-role='magic-overlay', id='aliyun' data-target='#aliyunBtn',
           style='display: inline !important;')
+    iframe(name='if1')
+    form(id='f1', target='if1', action='', method='PUT')
+      input(type='file')
+      input.btn.btn-primary(type='submit')
     .btn-group
       a.btn.btn-default(data-edit='undo', title='撤销 (Ctrl/Cmd+Z)')
         i.fa.fa-undo

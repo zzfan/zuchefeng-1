@@ -8,6 +8,7 @@ var users = require('../app/controllers/users')
 , cars = require('../app/controllers/cars')
 , auth = require('./middlewares/authorization')
 , utils = require('../lib/utils.js')
+, images = require('../app/controllers/images')
 
 //验证地址中的userId和req.user是不是一个人
 var userAuth = [auth.requiresLogin, auth.user.hasAuthorization]
@@ -74,5 +75,7 @@ module.exports = function (app, passport) {
   app.get('/find/img/upload/:img/:size', utils.getImage);
 
   app.get('/aliyun', utils.tmpAuth);
+
+  app.get('/cars/:carId/imageUpload', carAuth, images.serve)
 
 };

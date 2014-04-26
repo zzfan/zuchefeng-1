@@ -43,7 +43,10 @@
     "view-helpers": "latest",
     "forever": "latest",
     "easyimage": "latest",
-    "hebi-cloudstore": "latest"
+    "hebi-cloudstore": "latest",
+    "formidable": "latest",
+    "node-static": "latest",
+    "imagemagick": "latest"
   },
   "devDependencies": {
     "supertest": "latest",

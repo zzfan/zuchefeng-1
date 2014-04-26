@@ -1,6 +1,7 @@
 all: compile view uploaddir
 
 compile:
+	cp -r src/app app # incase some js source file
 	coffee -c -o app src/app
 	coffee -c -o lib src/lib
 

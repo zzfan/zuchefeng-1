@@ -155,10 +155,15 @@
             success: function(url) {
               // now get the authed url
               console.log(url);
+              $('#f1 input').files = self.files;
+              $('#f1').attr('action', url);
+              $('#f1').trigger('submit');
+              /*
               var formData = new FormData();
               $.each(self.files, function(idx, file) {
                 formData.append(idx, file)
               })
+              */
               //$.get('http://zuchefeng.oss-cn-hangzhou.aliyuncs.com/ZCFzuchefeng2014-04-21-13-00-00-0001', function(){});
               /*
               $.ajax(url, {
