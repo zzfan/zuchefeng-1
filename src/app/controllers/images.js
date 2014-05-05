@@ -7,9 +7,12 @@ formidable = require('formidable'),
 nodeStatic = require('node-static'),
 imageMagick = require('imagemagick'),
 options = {
-  tmpDir: __dirname + '/tmp',
-  publicDir: __dirname + '/public',
-  uploadDir: __dirname + '/public/files',
+  // tmpDir: __dirname + '/tmp',
+  // publicDir: __dirname + '/public',
+  // uploadDir: __dirname + '/public/files',
+  tmpDir: '/tmp',
+  publicDir:'/public',
+  uploadDir: '/public/upload',
   uploadUrl: '/files/',
   maxPostSize: 11000000000, // 11 GB
   minFileSize: 1,
@@ -55,6 +58,7 @@ UploadHandler = function (req, res, callback) {
 },
 serve = function (req, res) {
   // initial options
+
   options.tmpDir = 'tmp';
   options.publicDir = 'public';
   options.uploadDir = 'public/upload/'+req.car._id;
@@ -100,6 +104,7 @@ serve = function (req, res) {
     res.setHeader('Content-Disposition', 'inline; filename="files.json"');
   },
   handler = new UploadHandler(req, res, handleResult);
+
   switch (req.method) {
   case 'OPTIONS':
     res.end();
@@ -214,16 +219,19 @@ UploadHandler.prototype.post = function () {
   };
   form.uploadDir = options.tmpDir;
   form.on('fileBegin', function (name, file) {
+    console.log('fileBegin');
     tmpFiles.push(file.path);
     var fileInfo = new FileInfo(file, handler.req, true);
     fileInfo.safeName();
     map[path.basename(file.path)] = fileInfo;
     files.push(fileInfo);
   }).on('field', function (name, value) {
+    console.log('field');
     if (name === 'redirect') {
       redirect = value;
     }
   }).on('file', function (name, file) {
+    console.log('file');
     var fileInfo = map[path.basename(file.path)];
     fileInfo.size = file.size;
     if (!fileInfo.validate()) {
@@ -247,12 +255,15 @@ UploadHandler.prototype.post = function () {
       });
     }
   }).on('aborted', function () {
+    console.log('aborted');
     tmpFiles.forEach(function (file) {
       fs.unlink(file);
     });
   }).on('error', function (e) {
+    console.log('error');
     console.log(e);
   }).on('progress', function (bytesReceived, bytesExpected) {
+    console.log('progress');
     if (bytesReceived > options.maxPostSize) {
       handler.req.connection.destroy();
     }

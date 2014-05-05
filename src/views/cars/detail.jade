@@ -92,8 +92,19 @@ block content
           i.glyphicon.glyphicon-expand
     #editor
 
-    table.table.table-striped(role='presentation')
-      tbody.files
+    .modal.fade#myModal(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+            h4.modal-title(id='myModalLabel') Modal title
+          .modal-body
+            table.table.table-striped(role='presentation')
+              tbody.files
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') close
+            button.btn.btn-primary(type='button') Save
+
 block foot
   script#template-upload(type='text/x-tmpl').
     {% for (var i=0, file; file=o.files[i]; i++) { %}

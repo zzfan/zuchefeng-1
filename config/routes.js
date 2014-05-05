@@ -76,6 +76,6 @@ module.exports = function (app, passport) {
 
   app.get('/aliyun', utils.tmpAuth);
 
-  app.get('/cars/:carId/imageUpload', carAuth, images.serve)
+  app.post('/cars/:carId/imageUpload', carAuth, images.serve)
 
 };

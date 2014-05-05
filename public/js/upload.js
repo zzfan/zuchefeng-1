@@ -7,8 +7,10 @@ $(function () {
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
         //url: 'server/php/'
-        url: '/cars/'+ reg.exec(document.URL)[1]+'/imageUpload',
+        // url: '/cars/'+ reg.exec(document.URL)[1]+'/imageUpload',
+        url: '//localhost:8888',
         formData: [
+        // csrf support
           {name: '_csrf', value: $('#editor-save').data('csrf')}
         ]
     });
