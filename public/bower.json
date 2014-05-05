@@ -1,0 +1,16 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lihebi/zuchefeng",
+  "authors": [
+    "Hebi Li <lihebi@mail.ustc.edu.cn>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "latest",
+    "jquery": "latest",
+    "jquery.tagsinput": "latest",
+    "font-awesome": "latest",
+    "jquery.hotkeys": "latest"
+  }
+}

@@ -8,3 +8,4 @@ app/
 lib/
 !src/lib/
 config/config.js
+public/bower_components
