@@ -5,9 +5,12 @@ $(function(){
     'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
     'Times New Roman', 'Verdana'],
     fontTarget = $('[title=Font]').siblings('.dropdown-menu');
+    console.log(fonts);
+    console.log(fontTarget);
     $.each(fonts, function (idx, fontName) {
       fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
     });
+    console.log(fontTarget);
     // 把tooltip浮现出来
     $('a[title]').tooltip({container:'body'});
     // 下拉菜单 toggle
@@ -40,5 +43,28 @@ $(function(){
   // 启动
   $('#editor').wysiwyg({ fileUploadError: showErrorAlert} );
   window.prettyPrint && prettyPrint();
+
+  $('#editor-save').click(function(){
+    var reg = /(?:cars\/)([a-zA-Z0-9]+)(?:\/detail)/;
+    var url = '/cars/'+ reg.exec(document.URL)[1]+'/detail';
+    var formData = new FormData();
+    formData.append('html', $('#editor').html());
+    formData.append('_csrf', $('#editor-save').data('csrf'));
+    console.log(formData);
+    $.ajax({
+      url: url,
+      type: 'PUT',
+      data: formData,
+      cache: false,
+      // 没有这句话会出错。Uncaught TypeError: Illegal invocation
+      processData: false, // Don't process the files
+      // missing the code below, jquery will never send the file.
+      // the csrf using formData will fail too.
+      contentType: false,
+      success: function(data) {
+        alert(data);
+      }
+    });
+  });
 
 });

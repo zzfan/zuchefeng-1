@@ -145,6 +145,31 @@
         saveSelection();
         this.value = '';
       });
+      toolbar.find('#upload').change(function() {
+        restoreSelection();
+        var self = this;
+        if (this.type === 'file' && this.files && this.files.length > 0) {
+          var reg = /(?:cars\/)([a-zA-Z0-9]+)(?:\/detail)/;
+          var url = '/cars/'+ reg.exec(document.URL)[1]+'/imageUpload';
+          var formData = new FormData();
+          var file = this.files[0];
+          formData.append('image', file);
+          formData.append('_csrf', $('#editor-save').data('csrf'));
+          $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            cache: false,
+            //TODO dataType:
+            processData: false, // Don't process the files
+            contentType: false, // or jquery will never send the file
+            success: function(data){
+              document.execCommand('insertImage', 0, data);
+              saveSelection();
+            }
+          });
+        }
+      });
       // 自定义上传
       toolbar.find('#aliyun').change(function() {
         restoreSelection();
@@ -183,7 +208,7 @@
             }
           })
         }
-      })
+      });
     },
     // 拖拽上传
     initFileDrops = function () {

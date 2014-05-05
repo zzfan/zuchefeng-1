@@ -59,8 +59,13 @@ exports.detail = (req, res) ->
     car: req.car
 
 exports.updateDetail = (req, res) ->
-  console.log req.body.content
-  res.send 'lalala'
+  console.log req.body.html
+  car = req.car
+  # TODO validation
+  car.detail = req.body.html
+  car.save (err) ->
+    throw err if err
+    res.send 'success'
 
 exports.update = (req, res) ->
   car = req.car
@@ -103,3 +108,7 @@ exports.createOrder = (req, res) ->
   req.user.addOrder order._id
   # TODO redirect to the order page
   res.redirect '/'
+
+exports.imageUpload = (req, res) ->
+  url = utils.moveFile req.files.image, '/img/upload'
+  res.end url

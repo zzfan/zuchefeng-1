@@ -1,200 +1,110 @@
 extend ../layouts/default
-block head
-  link(href="//cdn.bootcss.com/blueimp-gallery/2.15.0/css/blueimp-gallery.min.css", rel="stylesheet")
-  link(href="//cdn.bootcss.com/blueimp-file-upload/9.5.2/css/jquery.fileupload.min.css", rel="stylesheet")
-  link(href="//cdn.bootcss.com/blueimp-file-upload/9.5.2/css/jquery.fileupload-ui.min.css", rel="stylesheet")
-  link(href="//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css", rel="stylesheet")
 
 block main
   .page-header
     h1 编辑汽车图文详情
 
 block content
-  .container#fileupload
-    .btn-toolbar(data-role='editor-toolbar', data-target='#editor')
-      .btn-group
-        a.btn.btn-default.dropdown-toggle(data-toggle='dropdown', title='字体')
-          i.fa.fa-font
-          b.caret
-        ul.dropdown-menu
-      .btn-group
-        a.btn.btn-default.dropdown-toggle(data-toggle='dropdown', title='文字大小')
-          i.fa.fa-text-height
-          &nbsp;
-          b.caret
-        ul.dropdown-menu
-          li
-            a(data-edit='fontSize 5')
-              font(size='5') Huge
-          li
-            a(data-edit='fontSize 3')
-              font(size='3') Normal
-          li
-            a(data-edit='fontSize 1')
-              font(size='1') Small
-      .btn-group
-        a.btn.btn-default(data-edit='bold', title='粗体 (Ctrl/Cmd+B)')
-          i.fa.fa-bold
-        a.btn.btn-default(data-edit='italic', title='斜体 (Ctrl/Cmd+I)')
-          i.fa.fa-italic
-        a.btn.btn-default(data-edit='strikethrough', title='删除线')
-          i.fa.fa-strikethrough
-        a.btn.btn-default(data-edit='underline', title='下划线 (Ctrl/Cmd+U)')
-          i.fa.fa-underline
-      .btn-group
-        a.btn.btn-default(data-edit='insertunorderedlist', title='无序列表')
-          i.fa.fa-list-ul
-        a.btn.btn-default(data-edit='insertorderedlist', title='有序列表')
-          i.fa.fa-list-ol
-        a.btn.btn-default(data-edit='outdent', title='减少缩进 (Shift+Tab)')
-          i.fa.fa-indent
-        a.btn.btn-default(data-edit='indent', title='增加缩进 (Tab)')
-          i.fa.fa-outdent
-      .btn-group
-        a.btn.btn-default(data-edit='justifyleft', title='左对齐 (Ctrl/Cmd+L)')
-          i.fa.fa-align-left
-        a.btn.btn-default(data-edit='justifycenter', title='居中对齐 (Ctrl/Cmd+E)')
-          i.fa.fa-align-center
-        a.btn.btn-default(data-edit='justifyright', title='右对齐 (Ctrl/Cmd+R)')
-          i.fa.fa-align-right
-        a.btn.btn-default(data-edit='justifyfull', title='两端对齐 (Ctrl/Cmd+J)')
-          i.fa.fa-align-justify
-      .btn-group
-        a.btn.btn-default.dropdown-toggle(data-toggle='dropdown', title='添加超链接')
-          i.fa.fa-link
-        .dropdown-menu.input-append
-          input.span2(placeholder='URL', type='text', data-edit='createLink')
-          button.btn.btn-default(type='button') Add
-        a.btn.btn-default(data-edit='unlink', title='移除超链接')
-          i.fa.fa-cut
-      .btn-group.sr-only
-        a.btn.btn-default(title='添加图片 (or just drag & drop)', id='pictureBtn')
-          i.fa.fa-picture-o
-          input(type='file', data-role='magic-overlay', data-target='#pictureBtn',
-            data-edit='insertImage', style='display: inline !important;')
-      .btn-group
-        a.btn.btn-warning.fileinput-button(title='异步图片', id='upload')
-          i.fa.fa-picture-o
-          input(type='file')
-      .btn-group
-        a.btn.btn-default(data-edit='undo', title='撤销 (Ctrl/Cmd+Z)')
-          i.fa.fa-undo
-        a.btn.btn-default(data-edit='redo', title='重做 (Ctrl/Cmd+Y)')
-          i.fa.fa-repeat
+  .btn-toolbar(data-role='editor-toolbar', data-target='#editor')
+    .btn-group
+      a.btn.btn-default.dropdown-toggle(data-toggle='dropdown', title='字体')
+        i.fa.fa-font
+        b.caret
+      ul.dropdown-menu
+    .btn-group
+      a.btn.btn-default.dropdown-toggle(data-toggle='dropdown', title='文字大小')
+        i.fa.fa-text-height
+        &nbsp;
+        b.caret
+      ul.dropdown-menu
+        li
+          a(data-edit='fontSize 5')
+            font(size='5') Huge
+        li
+          a(data-edit='fontSize 3')
+            font(size='3') Normal
+        li
+          a(data-edit='fontSize 1')
+            font(size='1') Small
+    .btn-group
+      a.btn.btn-default(data-edit='bold', title='粗体 (Ctrl/Cmd+B)')
+        i.fa.fa-bold
+      a.btn.btn-default(data-edit='italic', title='斜体 (Ctrl/Cmd+I)')
+        i.fa.fa-italic
+      a.btn.btn-default(data-edit='strikethrough', title='删除线')
+        i.fa.fa-strikethrough
+      a.btn.btn-default(data-edit='underline', title='下划线 (Ctrl/Cmd+U)')
+        i.fa.fa-underline
+    .btn-group
+      a.btn.btn-default(data-edit='insertunorderedlist', title='无序列表')
+        i.fa.fa-list-ul
+      a.btn.btn-default(data-edit='insertorderedlist', title='有序列表')
+        i.fa.fa-list-ol
+      a.btn.btn-default(data-edit='outdent', title='减少缩进 (Shift+Tab)')
+        i.fa.fa-indent
+      a.btn.btn-default(data-edit='indent', title='增加缩进 (Tab)')
+        i.fa.fa-outdent
+    .btn-group
+      a.btn.btn-default(data-edit='justifyleft', title='左对齐 (Ctrl/Cmd+L)')
+        i.fa.fa-align-left
+      a.btn.btn-default(data-edit='justifycenter', title='居中对齐 (Ctrl/Cmd+E)')
+        i.fa.fa-align-center
+      a.btn.btn-default(data-edit='justifyright', title='右对齐 (Ctrl/Cmd+R)')
+        i.fa.fa-align-right
+      a.btn.btn-default(data-edit='justifyfull', title='两端对齐 (Ctrl/Cmd+J)')
+        i.fa.fa-align-justify
+    .btn-group
+      a.btn.btn-default.dropdown-toggle(data-toggle='dropdown', title='添加超链接')
+        i.fa.fa-link
+      .dropdown-menu.input-append
+        input.span2(placeholder='URL', type='text', data-edit='createLink')
+        button.btn.btn-default(type='button') Add
+      a.btn.btn-default(data-edit='unlink', title='移除超链接')
+        i.fa.fa-cut
+    .btn-group.sr-only
+      a.btn.btn-default(title='添加图片 (or just drag & drop)', id='pictureBtn')
+        i.fa.fa-picture-o
+        input(type='file', data-role='magic-overlay', data-target='#pictureBtn',
+          data-edit='insertImage', style='display: inline !important;')
+    .btn-group
+      a.btn.btn-warning.fileinput-button(title='异步图片')
+        i.fa.fa-picture-o
+        input#upload(type='file')
+    .btn-group
+      a.btn.btn-default(data-edit='undo', title='撤销 (Ctrl/Cmd+Z)')
+        i.fa.fa-undo
+      a.btn.btn-default(data-edit='redo', title='重做 (Ctrl/Cmd+Y)')
+        i.fa.fa-repeat
 
-      .btn-group.pull-right
-        //!!!important
-        - var s = car._id.toString()
-        a.btn.btn-primary(title='保存', id='editor-save', href='#', data-car-id=s, data-csrf='#{csrf_token}')
-          i.fa.fa-save
-      .btn-group.pull-right
-        a.btn.btn-primary(title='预览', id='editor-preview', href='#')
-          i.glyphicon.glyphicon-expand
+    .btn-group.pull-right
+      //!!!important
+      - var s = car._id.toString()
+      a.btn.btn-primary(title='保存', id='editor-save', href='#', data-car-id=s, data-csrf='#{csrf_token}')
+        i.fa.fa-save
+    .btn-group.pull-right
+      a.btn.btn-primary(title='预览', id='editor-preview', href='#')
+        i.glyphicon.glyphicon-expand
+  - console.log(car.detail);
+  - if (car.detail)
+    #editor
+      != car.detail
+  - else
     #editor
 
-    .modal.fade#myModal(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      .modal-dialog
-        .modal-content
-          .modal-header
-            button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-            h4.modal-title(id='myModalLabel') Modal title
-          .modal-body
-            table.table.table-striped(role='presentation')
-              tbody.files
-          .modal-footer
-            button.btn.btn-default(type='button', data-dismiss='modal') close
-            button.btn.btn-primary(type='button') Save
-
-block foot
-  script#template-upload(type='text/x-tmpl').
-    {% for (var i=0, file; file=o.files[i]; i++) { %}
-      <tr class="template-upload fade">
-        <td>
-          <span class="preview"></span>
-        </td>
-        <td>
-          <p class="name">{%=file.name%}</p>
-          <strong class="error text-danger"></strong>
-        </td>
-        <td>
-          <p class="size">Processing...</p>
-          <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
-        </td>
-        <td>
-          {% if (!i && !o.options.autoUpload) { %}
-            <button class="btn btn-primary start" disabled>
-              <i class="glyphicon glyphicon-upload"></i>
-              <span>Start</span>
-            </button>
-          {% } %}
-          {% if (!i) { %}
-            <button class="btn btn-warning cancel">
-              <i class="glyphicon glyphicon-ban-circle"></i>
-              <span>Cancel</span>
-            </button>
-          {% } %}
-        </td>
-      </tr>
-    {% } %}
-  script#template-download(type='text/x-tmpl').
-    {% for (var i=0, file; file=o.files[i]; i++) { %}
-      <tr class="template-download fade">
-        <td>
-          <span class="preview">
-            {% if (file.thumbnailUrl) { %}
-              <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-            {% } %}
-          </span>
-        </td>
-        <td>
-          <p class="name">
-            {% if (file.url) { %}
-              <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-            {% } else { %}
-              <span>{%=file.name%}</span>
-            {% } %}
-          </p>
-          {% if (file.error) { %}
-            <div><span class="label label-danger">Error</span> {%=file.error%}</div>
-          {% } %}
-        </td>
-        <td>
-          <span class="size">{%=o.formatFileSize(file.size)%}</span>
-        </td>
-        <td>
-          {% if (file.deleteUrl) { %}
-            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-              <i class="glyphicon glyphicon-trash"></i>
-              <span>Delete</span>
-            </button>
-            <input type="checkbox" name="delete" value="1" class="toggle">
-          {% } else { %}
-            <button class="btn btn-warning cancel">
-              <i class="glyphicon glyphicon-ban-circle"></i>
-              <span>Cancel</span>
-            </button>
-          {% } %}
-        </td>
-      </tr>
-    {% } %}
+  .modal.fade#myModal(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+          h4.modal-title(id='myModalLabel') Modal title
+        .modal-body
+          table.table.table-striped(role='presentation')
+            tbody.files
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal') close
+          button.btn.btn-primary(type='button') Save
 
 
   script(src='/js/jquery.hotkeys.js')
   script(src='/js/bootstrap-wysiwyg.js')
   script(src='/js/editor.js')
-
-  script(src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js")
-  script(src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js")
-  script(src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js")
-  script(src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js")
-
-  script(src="//cdn.bootcss.com/blueimp-gallery/2.15.0/js/jquery.blueimp-gallery.min.js")
-  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.iframe-transport.min.js")
-  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload.js")
-  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-process.min.js")
-  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-image.min.js")
-  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-audio.min.js")
-  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-video.min.js")
-  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-validate.min.js")
-  script(src="//cdn.bootcss.com/blueimp-file-upload/9.5.2/jquery.fileupload-ui.min.js")
-  script(src="/js/upload.js")

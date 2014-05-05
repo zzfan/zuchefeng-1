@@ -38,6 +38,18 @@ exports.getImage = (req, res) ->
     res.writeHead 200, {'Content-Type': 'image/png' }
     res.end(img, 'binary')
     ###
+###
+@param dst => '/img/upload'
+###
+exports.moveFile = (file, dir) ->
+  src = file.path # '/var/xxx/xxx/xxx/xxx.jpg'
+  index = file.path.lastIndexOf '/'
+  filename = file.path.substr index+1 # xxx.jpg
+  dst = 'public'+dir+'/'+filename
+  fs.rename src, dst, (err) ->
+    throw err if err
+  dst.substr(6) # /img/xxx/xx.jpg
+
 
 exports.moveToUpload = (file) ->
   src = file.path # '/var/xxx/xxx/ccc/xffsj.jpg'
