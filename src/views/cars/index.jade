@@ -2,32 +2,34 @@
 
 extends ../layouts/default
 
-//block main
-  h1= title
-
 block content
-  include ../utils/area.jade
+  section.area
+    include ../utils/area.jade
 
-  - for (var i=0; i<Math.ceil(cars.length/3); i++)
-    - console.log(cars.length)
-    .row
-      - for (var j=0; j<3&&i*3+j<cars.length; j++)
-        - var car = cars[i*3+j]
-        .col-md-4
-          .thumbnail
-            - var img = (car.image === '')? '/img/2.jpeg' : '/find'+car.image+'/600x200'
-            img(src=img)
-            .caption
-              h3= car.name
-              p= car.desc
-              .meta
-                span.muted= formatDate(car.createdAt)
-                - if (car.seller)
-                  &nbsp; - &nbsp;
-                  span 拥有者 &nbsp;
-                  a(href='/sellers/'+car.seller._id)= car.seller.name
-              p
-                a.btn.btn-primary(href='/cars/'+car._id) 查看详情
-  - if (pages>1)
-    ul.pagination
-      != createPagination(pages, page)
+  section.items
+    - for (var i=0; i<cars.length; i++)
+      - var car = cars[i]
+      include ../utils/item.jade
+
+  //- - for (var i=0; i<Math.ceil(cars.length/3); i++)
+  //-   .row
+  //-     - for (var j=0; j<3&&i*3+j<cars.length; j++)
+  //-       - var car = cars[i*3+j]
+  //-       .col-md-3
+  //-         .thumbnail
+  //-           - var img = (car.image === '')? '/img/2.jpeg' : car.image
+  //-           img(style="width: 220px; height: 136px;",src=img)
+  //-           .caption
+  //-             h3= car.name
+  //-             p= car.desc
+  //-             .meta
+  //-               span.muted= formatDate(car.createdAt)
+  //-               - if (car.seller)
+  //-                 &nbsp; - &nbsp;
+  //-                 span 拥有者 &nbsp;
+  //-                 a(href='/sellers/'+car.seller._id)= car.seller.name
+  //-             p
+  //-               a.btn.btn-primary(href='/cars/'+car._id) 查看详情
+  //- - if (pages>1)
+  //-   ul.pagination
+  //-     != createPagination(pages, page)

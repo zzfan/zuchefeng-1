@@ -43,7 +43,7 @@ exports.index = (req, res) ->
     return res.render '500' if err
     Car.count().exec (err, count) ->
       res.render 'cars/index',
-        title: '单车列表'
+        title: '租车风'
         cars: cars
         page: page+1
         pages: Math.ceil count/perPage
@@ -74,7 +74,8 @@ exports.update = (req, res) ->
     exports.edit req, res if err
     res.redirect "/cars/#{car._id}"
   if req.files.image.originalFilename
-    car.addImageUrl (utils.moveToUpload req.files.image), cb
+    # car.addImageUrl (utils.moveToUpload req.files.image), cb
+    car.addImage req.files.image, cb
   else
     car.save cb
 

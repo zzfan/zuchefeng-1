@@ -7,37 +7,6 @@ fs = require 'fs'
 env = process.env.NODE_ENV || 'development'
 config = require('../config/config')[env]
 
-Aliyun = require('hebi-cloudstore').Aliyun
-
-exports.tmpAuth = (req, res) ->
-  aliyun = new Aliyun({
-  accessId: config.accessId,
-  accessKey: config.accessKey
-  })
-  url = aliyun.getTmpSign('zuchefeng', 'a.txt', 'PUT')
-  res.send url
-
-exports.getImage = (req, res) ->
-  filename = req.params.img
-  [width, height] = req.params.size.split('x')
-  easyimage.resize
-    src: "public/img/upload/#{filename}"
-    dst: "public/img/cache/#{filename}"
-    width: width
-    height: height
-    , (err, img) ->
-      # TODO 有这么几个疑点
-      # 1. easyimage是异步的吗？ 2. 它返回的这个img怎么不能用
-      img = fs.readFile "public/img/cache/#{filename}", (err, img) ->
-        res.writeHead 200, {'Content-Type': 'image/png' }
-        res.end(img, 'binary')
-      #res.writeHead 200, {'Content-Type': 'image/png' }
-      #res.end(img, 'binary')
-      ###
-  img = fs.readFile "public/img/upload/#{filename}", (err, img) ->
-    res.writeHead 200, {'Content-Type': 'image/png' }
-    res.end(img, 'binary')
-    ###
 ###
 @param dst => '/img/upload'
 ###
@@ -56,9 +25,17 @@ exports.moveToUpload = (file) ->
   index = file.path.lastIndexOf '/'
   filename = file.path.substr index+1 # xffsj.jpg
   dst = config.imgUpload + filename # public/img/xxx/xx.jpg
+  console.log "moving #{dst}"
   fs.rename src, dst, (err) ->
     throw err if err
   dst.substr(6) # /img/xxx/xx.jpg
+
+exports.removeFromUpload = (filename) ->
+  file = 'public'+filename
+  if fs.existsSync(file)
+    fs.unlinkSync 'public'+filename
+  else
+    console.log "#{file} not exist"
 
 # obselate
 resizeImage = (src) ->

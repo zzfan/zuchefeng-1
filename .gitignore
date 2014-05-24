@@ -1,5 +1,5 @@
 node_modules/
-.DS_Store
+.sass-cache
 public/img/upload
 public/img/cache
 public/img/thumbnail

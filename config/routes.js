@@ -8,7 +8,7 @@ var users = require('../app/controllers/users')
 , cars = require('../app/controllers/cars')
 , auth = require('./middlewares/authorization')
 , utils = require('../lib/utils.js')
-, images = require('../app/controllers/images')
+// , images = require('../app/controllers/images')
 
 //验证地址中的userId和req.user是不是一个人
 var userAuth = [auth.requiresLogin, auth.user.hasAuthorization]
@@ -72,9 +72,7 @@ module.exports = function (app, passport) {
   app.get('/cars/:carId/order', auth.requiresLogin, cars.order);
   app.post('/cars/:carId/order', auth.requiresLogin, cars.createOrder);
 
-  app.get('/find/img/upload/:img/:size', utils.getImage);
-
-  app.get('/aliyun', utils.tmpAuth);
+  // app.get('/aliyun', utils.tmpAuth);
 
   // app.post('/cars/:carId/imageUpload', carAuth, images.serve)
   app.post('/cars/:carId/imageUpload', carAuth, cars.imageUpload);

@@ -32,6 +32,10 @@ CarSchema.methods =
       throw err if err
     @image = url
     @save cb
+  addImage: (image, cb) ->
+    utils.removeFromUpload @image
+    @image = utils.moveToUpload image
+    @save cb
   addOrder: (order) ->
     @orders.push order._id
     @save (err) ->

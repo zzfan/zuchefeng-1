@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/* something new here */
+.main {
+  max-width: 1000px;
+  margin: 0 auto; }
+
+/*显示物品的article */
+article.item {
+  margin-right: 2em;
+  margin-bottom: 2em;
+  float: left;
+  background-color: white;
+  box-shadow: 0 0 7px rgba(33, 33, 33, 0.7);
+  width: 350px; }
+  article.item a {
+    text-decoration: none;
+    color: gray;
+    transition: color 0.2s; }
+  article.item a:hover {
+    color: #e48508; }
+  article.item img {
+    width: 100%;
+    height: 216px; }
+  article.item .price .now {
+    font-size: 22px;
+    color: #f35628; }
+  article.item .price .seller {
+    float: right; }
