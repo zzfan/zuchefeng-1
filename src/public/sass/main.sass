@@ -1,6 +1,12 @@
+$main_width: 1000px
+$img_width: 350px
+$img_height: 216px
+$price_color: #f35628
+$box_shadow: 0 0 7px rgba(33,33,33,.7)
+
 /* something new here */
 .main
-  max-width: 1000px
+  max-width: $main_width
   margin: 0 auto
 
 /*显示物品的article*/
@@ -9,8 +15,8 @@ article.item
   margin-bottom: 2em
   float: left
   background-color: white
-  box-shadow: 0 0 7px rgba(33,33,33,.7)
-  width: 350px
+  box-shadow: $box_shadow
+  width: $img_width
   a
     text-decoration: none
     color: gray
@@ -18,11 +24,25 @@ article.item
   a:hover
     color: #e48508
   img
-    width: 100%
-    height: 216px
+    width: $img_width
+    height: $img_height
   .price
     .now
       font-size: 22px
-      color: #f35628
+      color: $price_color
     .seller
       float: right
+section.items
+  nav
+    clear: both
+    ul.pagination
+      list-style: none
+
+.main.dashboard section.sidebar
+  float: left
+  nav
+    width: 200px
+
+.main.dashboard .content
+  width: 800px
+  float: left

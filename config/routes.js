@@ -53,7 +53,7 @@ module.exports = function (app, passport) {
   app.post('/sellers/:sellerId/head', sellerAuth, sellers.head);
 
 
-
+// car
   app.get('/cars', cars.index);
   app.get('/cars/new', auth.requiresSeller, cars.new);
   app.post('/cars', auth.requiresLogin, cars.create);

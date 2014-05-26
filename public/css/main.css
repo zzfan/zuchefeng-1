@@ -19,10 +19,24 @@ article.item {
   article.item a:hover {
     color: #e48508; }
   article.item img {
-    width: 100%;
+    width: 350px;
     height: 216px; }
   article.item .price .now {
     font-size: 22px;
     color: #f35628; }
   article.item .price .seller {
     float: right; }
+
+section.items nav {
+  clear: both; }
+  section.items nav ul.pagination {
+    list-style: none; }
+
+.main.dashboard section.sidebar {
+  float: left; }
+  .main.dashboard section.sidebar nav {
+    width: 200px; }
+
+.main.dashboard .content {
+  width: 800px;
+  float: left; }

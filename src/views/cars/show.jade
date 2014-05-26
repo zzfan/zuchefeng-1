@@ -1,56 +1,86 @@
 extends ../layouts/default
 
-block main
-
 block content
-  .row.mg-20.pd-20.bg-white
-    .col-md-offset-0.col-md-3
-      - if (!car.isNew && car.image)
-        //- img(src='/find'+car.image+'/256x256')
-        img(style="width: 250px", src=car.image)
-    .col-md-4.mg-l-20
-      h1= car.name
-      p 价格: #{car.price}
-      p 车牌号: #{car.number}
-      p 拥有者: &nbsp;
-        a(href='/sellers/'+car.seller._id)= car.seller.name
-      p 汽车描述: #{car.desc}
-      p= formatDate(car.createdAt, "%b %d, %Y at %I:%M %p")
+  .main.show
+    section.overview
+      header
+        p= car.title
+        p= car.brief_desc
+      img(src=car.image)
+      .price
+        p= car.price
+      .meta
+        p 基本信息
+      .select
+        p 选择款式
+      .buy
+        p 立即购买 购物车 收藏
+    nav
+      ul
+        li
+          a(href) 图文详情
+        li
+          a(href) 评价
+        li
+          a(href) 推荐
+    section.detail
+      p 这里是图文详情
+    section.rating
+      p 这里是评价区
+    section.recom
+      p 这里是推荐区
 
-      - if (user && user.type == 'Seller' && user._id.toString() == car.seller._id.toString())
-        //TODO complete this 2 function
-        form(action='/cars/'+car._id, method='post', onsubmit="return confirm('将会删除该车，确定吗？')")
-          input(type='hidden', name='_csrf', value='#{csrf_token}')
-          a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑信息
-          &nbsp;&nbsp;
-          a.btn.btn-primary(href='/cars/'+car._id+'/detail') 编写图文详情
-          &nbsp;
-          //TODO 1. how it works; 2. can delete work?
-          input(type='hidden', name='_method', value='DELETE')
-          button.btn.btn-danger(type='submit') 删除
-      - else
-        a.btn.btn-warning(href='/cars/'+car._id+'/order') 预定
 
-  .row.mg-20.pd-20.bg-white
-    ul.nav.nav-tabs
-      li.active
-        a(href='#detail' data-toggle='tab') 汽车详情
-      li
-        a(href='#record' data-toggle='tab') 交易记录
-      li
-        a(href='#rating' data-toggle='tab') 用户评价
-    .tab-content
-      .tab-pane.active#detail
-        div= car.detail
-      .tab-pane#record
-        - if (car.orders.length)
-          - each order in car.orders
-            p= order
-        - else
-          p 当前还没有订单，做第一个吧～
-      .tab-pane#rating
-        - if (car.ratings && car.ratings.length)
-          - each rating in car.ratings
-            p= rating
-        - else
-          p 还没有用户评价过此车
+
+  //-
+  //-
+  //- .row.mg-20.pd-20.bg-white
+  //-   .col-md-offset-0.col-md-3
+  //-     - if (!car.isNew && car.image)
+  //-       img(style="width: 250px", src=car.image)
+  //-   .col-md-4.mg-l-20
+  //-     h1= car.name
+  //-     p 价格: #{car.price}
+  //-     p 车牌号: #{car.number}
+  //-     p 拥有者: &nbsp;
+  //-       a(href='/sellers/'+car.seller._id)= car.seller.name
+  //-     p 汽车描述: #{car.desc}
+  //-     p= formatDate(car.createdAt, "%b %d, %Y at %I:%M %p")
+  //-
+  //-     - if (user && user.type == 'Seller' && user._id.toString() == car.seller._id.toString())
+  //-       //TODO complete this 2 function
+  //-       form(action='/cars/'+car._id, method='post', onsubmit="return confirm('将会删除该车，确定吗？')")
+  //-         input(type='hidden', name='_csrf', value='#{csrf_token}')
+  //-         a.btn.btn-primary(href='/cars/'+car._id+'/edit') 编辑信息
+  //-         &nbsp;&nbsp;
+  //-         a.btn.btn-primary(href='/cars/'+car._id+'/detail') 编写图文详情
+  //-         &nbsp;
+  //-         //TODO 1. how it works; 2. can delete work?
+  //-         input(type='hidden', name='_method', value='DELETE')
+  //-         button.btn.btn-danger(type='submit') 删除
+  //-     - else
+  //-       a.btn.btn-warning(href='/cars/'+car._id+'/order') 预定
+  //-
+  //- .row.mg-20.pd-20.bg-white
+  //-   ul.nav.nav-tabs
+  //-     li.active
+  //-       a(href='#detail' data-toggle='tab') 汽车详情
+  //-     li
+  //-       a(href='#record' data-toggle='tab') 交易记录
+  //-     li
+  //-       a(href='#rating' data-toggle='tab') 用户评价
+  //-   .tab-content
+  //-     .tab-pane.active#detail
+  //-       div= car.detail
+  //-     .tab-pane#record
+  //-       - if (car.orders.length)
+  //-         - each order in car.orders
+  //-           p= order
+  //-       - else
+  //-         p 当前还没有订单，做第一个吧～
+  //-     .tab-pane#rating
+  //-       - if (car.ratings && car.ratings.length)
+  //-         - each rating in car.ratings
+  //-           p= rating
+  //-       - else
+  //-         p 还没有用户评价过此车

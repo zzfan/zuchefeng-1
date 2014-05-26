@@ -1,16 +1,18 @@
 article.item
-  - var img = (car.image === '')? '/img/2.jpeg' : car.image
-  a(href)
-    img(src=img)
+  //- - var img = (car.image === '')? '/img/2.jpeg' : car.image
+  - var sellerLink = '/sellers/'+car.seller._id
+  - var carLink = '/cars/'+car._id
+  a(href=carLink)
+    img(src=car.image)
   .title
-    a(href='/cars/'+car._id)
+    a(href=carLink)
       h3= car.name
       p= car.desc
   .price
     span.now= "￥"+ car.price
     span.old= "￥" + car.old_price
     span.seller 公司:
-      a(href='/sellers/'+car.seller._id)= car.seller.name
+      a(href=sellerLink)= car.seller.name
   .rating
     span.sold= "已售:" + car.sold
     span.rating= "评价"

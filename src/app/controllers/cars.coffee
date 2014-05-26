@@ -33,9 +33,10 @@ exports.create = (req, res) ->
     car.save cb
 
 exports.index = (req, res) ->
-  page = if req.param 'page' > 0 then req.param 'page' else 1
+  page = if (req.param 'page') > 0 then req.param 'page' else 1
+  console.log page
   page -= 1
-  perPage = 30
+  perPage = 8
   options =
     perPage: perPage
     page: page

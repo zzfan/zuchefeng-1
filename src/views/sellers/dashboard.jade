@@ -1,20 +1,12 @@
-// views/sellers/show.jade
-
-
 extends ../layouts/default
 
-block main
-    //.col-md-12.column
-        .page-header
-            h1= title
-
 block content
-    .row
-        .col-md-3
-            include utils/dashNavs
-
-        .col-md-9
-            include utils/dashWelInfo
-            //TODO recent orders
-            - each car in user.cars
-                include utils/dashCar
+  .main.dashboard
+    section.sidebar
+      include _utils/navs
+    .content
+      section.welcome
+        include _utils/welcome
+      section.cars
+        - each car in user.cars
+          include ..cars/_utils/item
