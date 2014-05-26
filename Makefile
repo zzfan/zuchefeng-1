@@ -1,17 +1,17 @@
-all: compile view uploaddir sass
+all: js view sass
 
-compile:
-	rm -r app
-	# cp -r src/app app # incase some js source file
-	coffee -c -o app src/app
+pre:
+	mkdir -p public/img/upload
+
+js:
+	if [ -a app ]; then rm -r app; fi
+	mkdir app
+	coffee -c -o app/models src/models
+	coffee -c -o app/controllers src/controllers
 	coffee -c -o lib src/lib
 
 view:
 	cp -r src/views app/
-
-uploaddir:
-	mkdir -p public/img/upload
-	mkdir -p public/img/cache
 
 sass:
 	sass src/public/sass/main.sass public/css/main.css
