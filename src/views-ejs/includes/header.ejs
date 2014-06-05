@@ -1,0 +1,30 @@
+<header class="navbar navbar-inverse" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".zcf-navbar-collapse">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">zuchefeng</a>
+    </div>
+    <nav class="collapse navbar-collapse zcf-navbar-collapse" role="navigation">
+      <form class="navbar-form" id="search" role="search">
+        <div class="form-group">
+          <input class="form-control" type="text" placeholder="Search Text or Command">
+          <button class="btn btn-default sr-only" type="submit">Submit
+          </button>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <% if (req.isAuthenticated()) { %>
+          <% if (req.user.type == 'Seller') { %>
+            <% var url = "/sellers/"+req.user._id+"/dashboard" %>
+          <% } else { %>
+            <% var url = "/users/"+req.user._id %>
+          <% } %>
+          <li><a href="<%= url %>"> <%= req.user.name %> 的个人中心 </a></li>
+          <li><a href="/logout">退出</a></li>
+        <% } else { %>
+          <li class="<% if (isActive('/login')) %>"
