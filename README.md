@@ -1,3 +1,16 @@
+# Stopped!
+
+没有全部完成，是我的错，拖太久了。前几天PP租车刚宣布获得2000万融资，并进军中国。
+此项目停止。:sob:
+
+**BUT**
+
+我会吸取经验。下次不会再犯同样的错。
+
+Anyway, always :smile:
+
+---
+
 # zuchefeng
 
 http://go.codeschool.com/RzioeA
